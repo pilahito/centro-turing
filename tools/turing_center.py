@@ -124,8 +124,6 @@ class ConfigEditor:
             return False
         ejemplo = self.path.with_name("config.example.yaml")
         if not ejemplo.exists():
-            ejemplo = self.path.parent / "res" / "config.example.yaml"
-        if not ejemplo.exists():
             return False
         try:
             shutil.copy2(ejemplo, self.path)
@@ -305,9 +303,10 @@ class Platform:
             active = self._run(["systemctl", "--user", "is-active", "turing-smart-screen.service"])
             if active.strip() == "active":
                 return True, "systemd: activo"
-        found = self._find_monitor_process()
+        found = self._monitor_pids()
         if found:
-            return True, f"PID {found}"
+            extra = f" (+{len(found) - 1} duplicado)" if len(found) > 1 else ""
+            return True, f"PID {found[0]}{extra}"
         return False, "detenido"
 
     def _pid_alive(self, pid: int) -> bool:
@@ -328,20 +327,44 @@ class Platform:
         except OSError:
             return False
 
-    def _find_monitor_process(self) -> int:
+    def _monitor_pids(self) -> list:
+        """PIDs de nuestros monitores en marcha (puede haber mas de uno).
+
+        Detecta tambien los que se lanzaron como `main.py` relativo, que es como
+        arrancan los accesos directos: se mira la linea de comandos, el interprete
+        (venv del proyecto) y el directorio de trabajo. Asi el panel ve -y puede
+        cerrar- monitores que no arranco el mismo, incluidos los duplicados.
+        """
         try:
             import psutil  # type: ignore
-
-            for proc in psutil.process_iter(["pid", "name", "cmdline"]):
-                try:
-                    cmdline = " ".join(proc.info.get("cmdline") or [])
-                except Exception:
-                    continue
-                if "main.py" in cmdline and str(ROOT).replace("\\", "/") in cmdline.replace("\\", "/"):
-                    return int(proc.info["pid"])
         except Exception:
-            return 0
-        return 0
+            return []
+        root = str(ROOT).replace("\\", "/").lower()
+        pids = []
+        for proc in psutil.process_iter(["pid", "name", "cmdline", "exe"]):
+            try:
+                info = proc.info
+                if "python" not in (info.get("name") or "").lower():
+                    continue
+                cmdline = " ".join(info.get("cmdline") or []).replace("\\", "/").lower()
+                if "main.py" not in cmdline:
+                    continue
+                if root in cmdline or root in (info.get("exe") or "").replace("\\", "/").lower():
+                    pids.append(int(info["pid"]))
+                    continue
+                try:
+                    cwd = str(proc.cwd()).replace("\\", "/").lower()
+                except Exception:
+                    cwd = ""
+                if cwd == root:
+                    pids.append(int(info["pid"]))
+            except Exception:
+                continue
+        return pids
+
+    def _find_monitor_process(self) -> int:
+        pids = self._monitor_pids()
+        return pids[0] if pids else 0
 
     # -- arranque y parada -------------------------------------------------------
     def start(self, detached: bool = True) -> tuple[bool, str]:
@@ -388,23 +411,10 @@ class Platform:
 
         Windows reutiliza los PID: si el monitor murio y su numero se reasigno a
         otro programa, matarlo por PID cerraria un proceso ajeno. Por eso se mira
-        el nombre del ejecutable y la linea de comandos.
+        el nombre del ejecutable, la linea de comandos, el interprete y la carpeta
+        de trabajo (ver _monitor_pids).
         """
-        if pid <= 0:
-            return False
-        try:
-            import psutil  # type: ignore
-
-            proc = psutil.Process(pid)
-            cmdline = " ".join(proc.cmdline() or []).replace("\\", "/")
-            name = (proc.name() or "").lower()
-        except Exception:
-            return False
-        if "python" not in name:
-            return False
-        if "main.py" not in cmdline:
-            return False
-        return str(ROOT).replace("\\", "/") in cmdline
+        return pid in self._monitor_pids()
 
     def stop(self) -> tuple[bool, str]:
         messages = []
@@ -424,7 +434,7 @@ class Platform:
                     blocked = True
             else:
                 messages.append(f"PID {pid} ignorado (ya no es el monitor)")
-        for found in filter(None, [self._find_monitor_process()]):
+        for found in self._monitor_pids():
             if self._kill(found):
                 messages.append(f"PID {found} detenido")
             else:
