@@ -529,7 +529,7 @@ class Platform:
             launcher = ROOT / "tools" / "lanzar.py"
             content = (
                 "@echo off\r\n"
-                "rem Arranque automatico creado por Centro Turing 3.0\r\n"
+                "rem Arranque automatico creado por Centro Turing\r\n"
                 f'start "" /min "{python}" "{launcher}"\r\n'
             )
             path.write_text(content, encoding="utf-8")
