@@ -10,6 +10,7 @@ dist/
 version.txt
 
 # Configuracion y estado personal (no se sube)
+config.yaml
 config.local.yaml
 tmp/*
 !tmp/.gitkeep

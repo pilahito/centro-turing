@@ -42,7 +42,7 @@ from pathlib import Path
 # --------------------------------------------------------------------------------------
 APP_NAME = "Centro Turing"
 VERSION = "3.1.0"
-REPO_URL = "https://github.com/pilahito/turing-smart-screen-linux"
+REPO_URL = "https://github.com/pilahito/centro-turing"
 UPSTREAM_URL = "https://github.com/mathoudebine/turing-smart-screen-python"
 
 

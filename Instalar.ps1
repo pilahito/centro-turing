@@ -35,4 +35,8 @@ $pip = ".\venv\Scripts\python.exe"
     "pywin32>=311"
 
 Write-Host ""
+if (-not (Test-Path ".\config.yaml")) {
+    Copy-Item ".\config.example.yaml" ".\config.yaml"
+    Write-Host "config.yaml creado a partir del ejemplo (ajusta COM_PORT y tema)."
+}
 Write-Host "Listo. Ejecuta Iniciar.ps1 (acepta el aviso de administrador)."

@@ -295,15 +295,29 @@ def construir(project: Path, out_dir: Path, version: str, arch: str,
     extras = {
         "usr/bin/centro-turing": launcher_panel(),
         "usr/share/applications/centro-turing.desktop": desktop_entry(),
-        "usr/share/icons/hicolor/256x256/apps/centro-turing.png":
-            (project / "res" / "icons" / "centro-turing.png").read_bytes(),
-        "usr/share/pixmaps/centro-turing.png":
-            (project / "res" / "icons" / "centro-turing.png").read_bytes(),
         f"{DOC_DIR}/copyright": copyright_file(),
         f"{DOC_DIR}/changelog": f"centro-turing ({version}) unstable; urgency=medium\n\n".encode()
                                 + b"  * Paquete generado con tools/build_deb.py\n\n"
                                 + f" -- pilahito <pilahito1chico@gmail.com>  {time.ctime()}\n".encode(),
     }
+    # Iconos de escritorio: el tema hicolor necesita varios tamanos para que el
+    # menu, el dock y el conmutador de ventanas no reescalen una imagen unica.
+    iconos = {
+        "usr/share/icons/hicolor/48x48/apps/centro-turing.png":
+            project / "res" / "icons" / "tray" / "48.png",
+        "usr/share/icons/hicolor/64x64/apps/centro-turing.png":
+            project / "res" / "icons" / "tray" / "64.png",
+        "usr/share/icons/hicolor/128x128/apps/centro-turing.png":
+            project / "res" / "icons" / "tray" / "128.png",
+        "usr/share/icons/hicolor/256x256/apps/centro-turing.png":
+            project / "res" / "icons" / "centro-turing.png",
+        "usr/share/pixmaps/centro-turing.png":
+            project / "res" / "icons" / "tray" / "128.png",
+    }
+    for destino, origen in iconos.items():
+        if not origen.is_file():
+            raise SystemExit(f"Falta el icono {origen} (genera con tools/logo_lab.py --aplicar)")
+        extras[destino] = origen.read_bytes()
     for ruta, datos in extras.items():
         data_files.append((ruta, datos))
         md5_lineas.append(f"{hashlib.md5(datos).hexdigest()}  /{ruta}")
@@ -372,7 +386,8 @@ def verificar(paquete: Path) -> None:
                        "opt/centro-turing/tools/turing_design.py",
                        "opt/centro-turing/library/config.py",
                        "usr/bin/centro-turing", "usr/share/applications/centro-turing.desktop",
-                       "usr/share/icons/hicolor/256x256/apps/centro-turing.png", "md5sums"]
+                       "usr/share/icons/hicolor/256x256/apps/centro-turing.png",
+                       "usr/share/icons/hicolor/128x128/apps/centro-turing.png", "md5sums"]
     for ruta in imprescindibles:
         assert ruta in contenido, f"falta {ruta}"
     log(f"  data OK: {len(contenido)} entradas (incluye las {len(imprescindibles)} clave)")

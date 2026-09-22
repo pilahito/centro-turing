@@ -22,6 +22,7 @@
 
 import os
 import queue
+import shutil
 import sys
 from pathlib import Path
 import yaml
@@ -38,7 +39,25 @@ def load_yaml(configfile):
 PATH = sys.path[0]
 MAIN_DIRECTORY = Path(__file__).parent.parent.resolve()
 FONTS_DIR = str(MAIN_DIRECTORY / "res" / "fonts") + "/"
-CONFIG_DATA = load_yaml(MAIN_DIRECTORY / "config.yaml")
+CONFIG_FILE = MAIN_DIRECTORY / "config.yaml"
+CONFIG_EXAMPLE = MAIN_DIRECTORY / "config.example.yaml"
+
+
+def ensure_config_file() -> bool:
+    """Crea config.yaml a partir del ejemplo si falta (clon o instalacion nueva).
+
+    La configuracion es personal (puerto COM, tema, coordenadas del clima) y no se
+    versiona: cada instalacion tiene la suya. Devuelve True si la ha creado.
+    """
+    if CONFIG_FILE.exists() or not CONFIG_EXAMPLE.exists():
+        return False
+    shutil.copyfile(CONFIG_EXAMPLE, CONFIG_FILE)
+    logger.info("config.yaml no existia: creado a partir de config.example.yaml")
+    return True
+
+
+ensure_config_file()
+CONFIG_DATA = load_yaml(CONFIG_FILE)
 THEME_DEFAULT = load_yaml(MAIN_DIRECTORY / "res/themes/default.yaml")
 THEME_DATA = None
 

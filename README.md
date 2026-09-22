@@ -26,7 +26,10 @@ completa en [CREDITOS.md](CREDITOS.md); lo que se ha dejado fuera, en
 ## Windows
 
 ```powershell
-# 1) Dependencias (crea venv\)
+git clone https://github.com/pilahito/centro-turing
+cd centro-turing
+
+# 1) Dependencias (crea venv\ y config.yaml)
 .\Instalar.ps1
 
 # 2) Abrir el panel

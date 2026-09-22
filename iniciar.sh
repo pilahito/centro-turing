@@ -31,6 +31,10 @@ if [[ "${1:-}" == "--install" ]]; then
   source venv/bin/activate
   pip install -U pip
   pip install -r requirements.txt
+  if [[ ! -f config.yaml ]]; then
+    cp config.example.yaml config.yaml
+    echo "config.yaml creado a partir del ejemplo (ajusta COM_PORT y tema)."
+  fi
   echo "OK. Enchufa la pantalla USB y ejecuta: ./iniciar.sh ConilES"
   exit 0
 fi
