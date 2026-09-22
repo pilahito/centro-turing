@@ -33,3 +33,6 @@ Thumbs.db
 *.bak-*
 *.orig
 *.original
+
+# Accesos directos locales (rutas absolutas de esta maquina)
+*.lnk
