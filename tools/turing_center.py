@@ -327,21 +327,26 @@ class Platform:
         except OSError:
             return False
 
-    def _monitor_pids(self) -> list:
-        """PIDs de nuestros monitores en marcha (puede haber mas de uno).
+    def _monitor_pids(self, todos: bool = False) -> list:
+        """PIDs de nuestros monitores en marcha.
 
         Detecta tambien los que se lanzaron como `main.py` relativo, que es como
         arrancan los accesos directos: se mira la linea de comandos, el interprete
         (venv del proyecto) y el directorio de trabajo. Asi el panel ve -y puede
-        cerrar- monitores que no arranco el mismo, incluidos los duplicados.
+        cerrar- monitores que no arranco el mismo.
+
+        En Windows el `python.exe` del venv es un lanzador que ejecuta el
+        interprete real como proceso hijo: por defecto se cuenta solo el padre
+        (un monitor = un PID), y con `todos=True` se devuelven ambos, que es lo
+        que hay que cerrar para parar de verdad.
         """
         try:
             import psutil  # type: ignore
         except Exception:
             return []
         root = str(ROOT).replace("\\", "/").lower()
-        pids = []
-        for proc in psutil.process_iter(["pid", "name", "cmdline", "exe"]):
+        candidatos = {}
+        for proc in psutil.process_iter(["pid", "name", "cmdline", "exe", "ppid"]):
             try:
                 info = proc.info
                 if "python" not in (info.get("name") or "").lower():
@@ -350,17 +355,19 @@ class Platform:
                 if "main.py" not in cmdline:
                     continue
                 if root in cmdline or root in (info.get("exe") or "").replace("\\", "/").lower():
-                    pids.append(int(info["pid"]))
+                    candidatos[int(info["pid"])] = int(info.get("ppid") or 0)
                     continue
                 try:
                     cwd = str(proc.cwd()).replace("\\", "/").lower()
                 except Exception:
                     cwd = ""
                 if cwd == root:
-                    pids.append(int(info["pid"]))
+                    candidatos[int(info["pid"])] = int(info.get("ppid") or 0)
             except Exception:
                 continue
-        return pids
+        if todos:
+            return list(candidatos)
+        return [pid for pid, ppid in candidatos.items() if ppid not in candidatos]
 
     def _find_monitor_process(self) -> int:
         pids = self._monitor_pids()
@@ -414,7 +421,7 @@ class Platform:
         el nombre del ejecutable, la linea de comandos, el interprete y la carpeta
         de trabajo (ver _monitor_pids).
         """
-        return pid in self._monitor_pids()
+        return pid in self._monitor_pids(todos=True)
 
     def stop(self) -> tuple[bool, str]:
         messages = []
@@ -434,7 +441,7 @@ class Platform:
                     blocked = True
             else:
                 messages.append(f"PID {pid} ignorado (ya no es el monitor)")
-        for found in self._monitor_pids():
+        for found in self._monitor_pids(todos=True):
             if self._kill(found):
                 messages.append(f"PID {found} detenido")
             else:
