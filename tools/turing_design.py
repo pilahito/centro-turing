@@ -269,75 +269,180 @@ def _antialias(size: tuple[int, int], draw_fn, scale: int = 4) -> Image.Image:
 
 def icon(name: str, *, size: int = 18, color: str = C["muted"], accent: str | None = None  # noqa: C901
          ) -> Image.Image:
-    """Iconos vectoriales (no dependen de que la tipografía tenga el glifo)."""
+    """Iconos vectoriales (no dependen de que la tipografia tenga el glifo).
+
+    Se dibujan sobre una rejilla normalizada de 24x24 unidades, asi que salen
+    igual de finos a 15 px que a 48 px. Trazo redondeado y grosores coherentes
+    (1.9 u) con la misma familia visual en todo el panel.
+    """
     paint = accent or color
-    width = max(1, size // 9)
 
     def draw_panel(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
-        gap = 2 * s
-        cell = (box[0] - gap * 3) // 2
-        for index, (cx, cy) in enumerate([(gap, gap), (gap * 2 + cell, gap),
-                                          (gap, gap * 2 + cell), (gap * 2 + cell, gap * 2 + cell)]):
-            radius = 3 * s
-            color_now = paint if index == 0 else rgba(paint, 150)
-            draw.rounded_rectangle([(cx, cy), (cx + cell, cy + cell)], radius=radius, fill=color_now)
+        u = box[0] / 24.0
+        w = max(1, round(1.9 * u))
+
+        def px(value: float) -> float:
+            return value * u
+
+        def rr(x1: float, y1: float, x2: float, y2: float, radius: float,
+               fill=None, outline=None) -> None:
+            draw.rounded_rectangle([(px(x1), px(y1)), (px(x2), px(y2))],
+                                   radius=px(radius), fill=fill, outline=outline, width=w)
+
+        # Panel de estado: rejilla bento (una ficha marcada, el resto suaves)
+        rr(3, 13.5, 10.5, 21, 2.6, fill=rgba(paint, 235))
+        rr(13.5, 3, 21, 10.5, 2.6, outline=rgba(paint, 200))
+        rr(13.5, 13.5, 21, 21, 2.6, outline=rgba(paint, 150))
+        rr(3, 3, 10.5, 10.5, 2.6, outline=rgba(paint, 200))
 
     def draw_themes(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
-        for index in range(3):
-            offset = index * 4 * s
-            draw.rounded_rectangle([(2 * s + offset // 2, 3 * s + offset),
-                                    (box[0] - 2 * s - offset // 2, box[1] - 6 * s + offset // 2)],
-                                   radius=3 * s, outline=rgba(paint, 200 - index * 55), width=width)
+        u = box[0] / 24.0
+        w = max(1, round(1.9 * u))
+
+        def px(value: float) -> float:
+            return value * u
+
+        def rr(x1: float, y1: float, x2: float, y2: float, radius: float,
+               fill=None, outline=None) -> None:
+            draw.rounded_rectangle([(px(x1), px(y1)), (px(x2), px(y2))],
+                                   radius=px(radius), fill=fill, outline=outline, width=w)
+
+        # Temas: pila de fichas (la de delante, marcada)
+        rr(8, 2.5, 21.5, 16, 3, outline=rgba(paint, 110))
+        rr(5.5, 5, 19, 18.5, 3, outline=rgba(paint, 170))
+        rr(3, 7.5, 16.5, 21, 3, fill=rgba(paint, 205))
 
     def draw_settings(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
-        for index, ratio in enumerate((0.3, 0.7, 0.45)):
-            y = (4 + index * 5) * s
-            draw.line([(2 * s, y), (box[0] - 2 * s, y)], fill=rgba(paint, 170), width=width)
-            knob_x = int(2 * s + (box[0] - 4 * s) * ratio)
-            draw.ellipse([(knob_x - 3 * s, y - 3 * s), (knob_x + 3 * s, y + 3 * s)], fill=paint)
+        u = box[0] / 24.0
+        w = max(1, round(1.9 * u))
+
+        def px(value: float) -> float:
+            return value * u
+
+        # Ajustes: dos deslizadores con pomo
+        for y, knob in ((8.0, 15.0), (16.0, 9.0)):
+            draw.line([(px(3), px(y)), (px(21), px(y))], fill=rgba(paint, 170), width=w)
+            r = px(2.7)
+            draw.ellipse([(px(knob) - r, px(y) - r), (px(knob) + r, px(y) + r)], fill=paint)
 
     def draw_log(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
-        draw.rounded_rectangle([(2 * s, 3 * s), (box[0] - 2 * s, box[1] - 3 * s)], radius=3 * s,
-                               outline=rgba(paint, 190), width=width)
-        draw.line([(5 * s, 7 * s), (7 * s, 9 * s)], fill=paint, width=width)
-        draw.line([(7 * s, 9 * s), (5 * s, 11 * s)], fill=paint, width=width)
-        draw.line([(9 * s, 12 * s), (13 * s, 12 * s)], fill=rgba(paint, 200), width=width)
+        u = box[0] / 24.0
+        w = max(1, round(1.9 * u))
+
+        def px(value: float) -> float:
+            return value * u
+
+        # Registro: ventana de terminal con prompt
+        draw.rounded_rectangle([(px(2.5), px(4)), (px(21.5), px(20))],
+                               radius=px(3), outline=rgba(paint, 195), width=w)
+        points = [(px(6.5), px(9.5)), (px(10), px(12)), (px(6.5), px(14.5))]
+        draw.line(points, fill=paint, width=w, joint="curve")
+        for point in points:
+            r = w / 2
+            draw.ellipse([(point[0] - r, point[1] - r), (point[0] + r, point[1] + r)], fill=paint)
+        draw.line([(px(12.5), px(15.5)), (px(17.5), px(15.5))], fill=rgba(paint, 205), width=w)
 
     def draw_system(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
-        draw.rounded_rectangle([(4 * s, 4 * s), (box[0] - 4 * s, box[1] - 4 * s)], radius=2 * s,
-                               outline=rgba(paint, 200), width=width)
-        draw.rectangle([(7 * s, 7 * s), (box[0] - 7 * s, box[1] - 7 * s)], fill=rgba(paint, 120))
-        for step in range(3):
-            y = (6 + step * 3) * s
-            draw.line([(2 * s, y), (4 * s, y)], fill=rgba(paint, 160), width=width)
-            draw.line([(box[0] - 4 * s, y), (box[0] - 2 * s, y)], fill=rgba(paint, 160), width=width)
+        u = box[0] / 24.0
+        w = max(1, round(1.9 * u))
+
+        def px(value: float) -> float:
+            return value * u
+
+        # Sistema: chip con patillas
+        draw.rounded_rectangle([(px(6), px(6)), (px(18), px(18))],
+                               radius=px(2.6), outline=rgba(paint, 210), width=w)
+        draw.rounded_rectangle([(px(9.6), px(9.6)), (px(14.4), px(14.4))],
+                               radius=px(1.2), fill=rgba(paint, 190))
+        for step in (9.0, 12.0, 15.0):
+            draw.line([(px(step), px(3)), (px(step), px(5.4))], fill=rgba(paint, 170), width=w)
+            draw.line([(px(step), px(18.6)), (px(step), px(21))], fill=rgba(paint, 170), width=w)
+            draw.line([(px(3), px(step)), (px(5.4), px(step))], fill=rgba(paint, 170), width=w)
+            draw.line([(px(18.6), px(step)), (px(21), px(step))], fill=rgba(paint, 170), width=w)
 
     def draw_about(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
-        draw.ellipse([(2 * s, 2 * s), (box[0] - 2 * s, box[1] - 2 * s)], outline=rgba(paint, 200), width=width)
-        draw.ellipse([(box[0] // 2 - s, 5 * s), (box[0] // 2 + s, 7 * s)], fill=paint)
-        draw.line([(box[0] // 2, 9 * s), (box[0] // 2, 13 * s)], fill=paint, width=width)
+        u = box[0] / 24.0
+        w = max(1, round(1.9 * u))
+
+        def px(value: float) -> float:
+            return value * u
+
+        # Acerca de: circulo de informacion
+        draw.ellipse([(px(3), px(3)), (px(21), px(21))], outline=rgba(paint, 205), width=w)
+        r = px(1.5)
+        draw.ellipse([(px(12) - r, px(7.6) - r), (px(12) + r, px(7.6) + r)], fill=paint)
+        draw.line([(px(12), px(11)), (px(12), px(16.6))], fill=paint, width=max(1, round(2.2 * u)))
+
+    def draw_search(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
+        u = box[0] / 24.0
+        w = max(1, round(2.0 * u))
+
+        def px(value: float) -> float:
+            return value * u
+
+        # Buscar: lupa
+        draw.ellipse([(px(4), px(4)), (px(16), px(16))], outline=rgba(paint, 200), width=w)
+        draw.line([(px(15.2), px(15.2)), (px(20.5), px(20.5))], fill=rgba(paint, 200), width=w)
 
     def draw_chevron(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
-        draw.line([(5 * s, 8 * s), (box[0] // 2, 12 * s), (box[0] - 5 * s, 8 * s)],
-                  fill=rgba(paint, 210), width=width + s, joint="curve")
+        u = box[0] / 24.0
+        w = max(1, round(2.1 * u))
+
+        def px(value: float) -> float:
+            return value * u
+
+        points = [(px(9), px(5.5)), (px(16), px(12)), (px(9), px(18.5))]
+        draw.line(points, fill=rgba(paint, 215), width=w, joint="curve")
+        for point in points[:1] + points[2:]:
+            r = w / 2
+            draw.ellipse([(point[0] - r, point[1] - r), (point[0] + r, point[1] + r)],
+                         fill=rgba(paint, 215))
 
     def draw_check(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
-        draw.line([(4 * s, 9 * s), (8 * s, 13 * s), (14 * s, 5 * s)], fill=paint, width=width + s, joint="curve")
+        u = box[0] / 24.0
+        w = max(1, round(2.4 * u))
+
+        def px(value: float) -> float:
+            return value * u
+
+        points = [(px(5), px(12.6)), (px(10), px(17.6)), (px(19), px(6.4))]
+        draw.line(points, fill=paint, width=w, joint="curve")
+        for point in points[:1] + points[2:]:
+            r = w / 2
+            draw.ellipse([(point[0] - r, point[1] - r), (point[0] + r, point[1] + r)], fill=paint)
 
     def draw_play(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
-        draw.polygon([(6 * s, 4 * s), (14 * s, box[1] // 2), (6 * s, box[1] - 4 * s)], fill=paint)
+        u = box[0] / 24.0
+
+        def px(value: float) -> float:
+            return value * u
+
+        draw.polygon([(px(8), px(5)), (px(19.5), px(12)), (px(8), px(19))], fill=paint)
 
     def draw_stop(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
-        draw.rounded_rectangle([(5 * s, 5 * s), (box[0] - 5 * s, box[1] - 5 * s)], radius=2 * s, fill=paint)
+        u = box[0] / 24.0
+
+        def px(value: float) -> float:
+            return value * u
+
+        draw.rounded_rectangle([(px(6.5), px(6.5)), (px(17.5), px(17.5))],
+                               radius=px(2.6), fill=paint)
 
     def draw_refresh(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
-        draw.arc([(3 * s, 3 * s), (box[0] - 3 * s, box[1] - 3 * s)], 40, 320, fill=paint, width=width + s)
-        draw.polygon([(box[0] - 7 * s, 2 * s), (box[0] - 2 * s, 6 * s), (box[0] - 8 * s, 8 * s)], fill=paint)
+        u = box[0] / 24.0
+        w = max(1, round(2.1 * u))
+
+        def px(value: float) -> float:
+            return value * u
+
+        # Flecha circular: arco + punta
+        draw.arc([(px(4), px(4)), (px(20), px(20))], 55, 300, fill=paint, width=w)
+        draw.polygon([(px(19.4), px(3.4)), (px(12.6), px(4.6)), (px(18.4), px(9.6))], fill=paint)
 
     painters = {"panel": draw_panel, "themes": draw_themes, "settings": draw_settings,
                 "log": draw_log, "system": draw_system, "about": draw_about,
-                "chevron": draw_chevron, "check": draw_check, "play": draw_play,
-                "stop": draw_stop, "refresh": draw_refresh}
+                "search": draw_search, "chevron": draw_chevron, "check": draw_check,
+                "play": draw_play, "stop": draw_stop, "refresh": draw_refresh}
     return _antialias((size, size), painters.get(name, draw_panel))
 
 
@@ -828,6 +933,58 @@ def compose(size: tuple[int, int], layers: list[tuple[Image.Image, tuple[int, in
     return canvas
 
 
+def about_card(width: int, *, app_name: str = "Centro Turing", version: str = "3.1.0",
+               topics: int = 0, repo_url: str = "", upstream_url: str = "",
+               python_version: str = "",
+               license_line: str = "(C) 2021 Matthieu Houdebine (mathoudebine) "
+                                  "y colaboradores - GPL-3.0-or-later") -> Image.Image:
+    """Tarjeta de identidad del proyecto (la usan la app y las previsualizaciones).
+
+    Marca grande, version, distintivos, creditos del proyecto base y de esta
+    edicion, y la linea de licencia. Una sola definicion para que `--mockup` y la
+    ventana real no se separen.
+    """
+    height = 372
+    image = glass((width, height), radius=R["card"], shadow=14)
+    image.alpha_composite(brand_mark(84), (SP["xl"], SP["xl"]))
+
+    text_x = SP["xl"] + 84 + SP["lg"]
+    draw_text(image, (text_x, SP["xl"] + 4), f"{app_name} {version}", size=T["display"] - 6,
+              weight="bold")
+    draw_text(image, (text_x, SP["xl"] + 44), "Panel para mini pantallas USB Turing / XuanFang",
+              size=T["small"], color=C["muted"])
+    draw_text(image, (text_x, SP["xl"] + 64), "Windows y Linux, la misma interfaz en los dos",
+              size=T["small"], color=C["faint"])
+
+    badges = [("GPL-3.0", "ok"), ("Sin candados", "warn"), (f"{topics} temas", "accent")]
+    if python_version:
+        badges.append((f"Python {python_version}", "neutral"))
+    chip_x, chip_y = SP["xl"], SP["xl"] + 84 + 22
+    for label, kind in badges:
+        badge = chip(label, kind=kind, height=28, padding=14)
+        image.alpha_composite(badge, (chip_x, chip_y))
+        chip_x += badge.width + 10
+
+    sep_y = chip_y + 28 + 20
+    separator = surface((width - SP["xl"] * 2, 1), radius=0, fill=C["border"],
+                        border=None, highlight=False)
+    image.alpha_composite(separator, (SP["xl"], sep_y))
+
+    credits = (("Proyecto base", "turing-smart-screen-python, de mathoudebine y colaboradores",
+                upstream_url),
+               ("Esta edicion", "Panel Centro Turing, interfaz 2026, temas ES y empaquetado: pilahito",
+                repo_url))
+    row_y = sep_y + SP["lg"]
+    for title, detail, url in credits:
+        draw_text(image, (SP["xl"], row_y), title, size=T["small"], weight="bold", color=C["accent"])
+        draw_text(image, (SP["xl"], row_y + 20), detail, size=T["small"], color=C["muted"])
+        draw_text(image, (SP["xl"], row_y + 40), url, size=T["tiny"], color=C["faint"])
+        row_y += 70
+
+    draw_text(image, (SP["xl"], height - 30), license_line, size=T["tiny"], color=C["faint"])
+    return image
+
+
 def save_mockups(directory: Path, state: dict) -> list[Path]:  # noqa: C901 - compone 6 paginas
     """Genera una imagen por pagina con el mismo motor que usa la aplicacion."""
     directory.mkdir(parents=True, exist_ok=True)
@@ -948,15 +1105,17 @@ def save_mockups(directory: Path, state: dict) -> list[Path]:  # noqa: C901 - co
     written.append(directory / "05-sistema.png")
     shell("Sistema", "Arranque automático, dependencias y diagnóstico.", system_body).save(written[-1])
 
-    about = glass((900, 330), shadow=10)
-    draw_text(about, (SP["lg"], SP["lg"]), f"Centro Turing {state.get('version', '3.0')}", size=T["h1"],
-              weight="bold")
-    for index, line in enumerate(state.get("about", [])):
-        draw_text(about, (SP["lg"], SP["lg"] + 46 + index * 24), line, size=T["small"], color=C["muted"])
-    about.alpha_composite(button("Abrir repositorio", kind="primary", width=200, height=42),
-                          (SP["lg"], 240))
+    about = about_card(880, app_name="Centro Turing", version=state.get("version", "3.1.0"),
+                       topics=state.get("themes_count", 0),
+                       repo_url=state.get("repo_url", ""),
+                       upstream_url=state.get("upstream_url", ""))
     written.append(directory / "06-acerca.png")
-    shell("Acerca de", "Software libre y gratuito, sin candados ni compras.", [(about, (0, 0))]).save(written[-1])
+    shell("Acerca de", "Software libre y gratuito, sin candados ni compras.",
+          [(about, (0, 0)),
+           (button("Abrir repositorio", kind="primary", width=230, height=44),
+            (0, about.height + SP["lg"])),
+           (button("Ver licencia GPL-3.0", kind="secondary", width=230, height=44),
+            (246, about.height + SP["lg"]))]).save(written[-1])
     return written
 
 

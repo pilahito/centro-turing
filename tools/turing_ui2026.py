@@ -29,7 +29,7 @@ from turing_center import (  # noqa: E402
 )
 
 try:  # Pillow es imprescindible para esta interfaz
-    from PIL import Image, ImageTk
+    from PIL import Image, ImageDraw, ImageTk
 except ImportError as error:  # pragma: no cover
     raise SystemExit("Centro Turing necesita Pillow: pip install -r requirements.txt") from error
 
@@ -710,7 +710,7 @@ class App(tk.Tk):
                                                     fill=C["surface_2"], border=C["border_hi"]))
         self.scene.image(tag, "search", field, field_x, field_y)
         self.scene.image(tag, "search_icon", self.scene.cached(("search_icon",),
-                                                               lambda: D.icon("log", size=15, color=C["faint"])),
+                                                               lambda: D.icon("search", size=15, color=C["faint"])),
                          field_x + SP["md"], field_y + 9)
         if not self.search:
             self.scene.text(tag, field_x + SP["md"] + 22, field_y + field_h // 2, "Buscar tema…",
@@ -889,34 +889,30 @@ class App(tk.Tk):
     def _page_acerca(self, x: int, y: int, width: int, height: int, pressed: str) -> None:
         tag = "current_page"
         self._title(tag, x, y, "Acerca de", "Software libre y gratuito, sin candados ni compras.")
-        card_w = min(860, width)
-        lines = [
-            f"{APP_NAME} {VERSION} — panel unificado para pantallas Turing / XuanFang.",
-            "La misma interfaz en Windows y Linux.",
-            "",
-            f"Proyecto Linux:  {REPO_URL}",
-            f"Proyecto base:   {core.UPSTREAM_URL}",
-            "",
-            "Turing Smart Screen Panel © mathoudebine y colaboradores — GPL-3.0.",
-            "Adaptación al español y edición Linux: pilahito.",
-        ]
-        card = self.scene.cached(("about_card", card_w, tuple(lines)),
-                                 lambda: self._about_card(card_w, lines))
+        card_w = min(880, width)
+        card = self.scene.cached(("about_card", card_w), lambda: self._about_card(card_w))
         self.scene.image(tag, "about", card, x, y + 66)
-        button = self.scene.cached(("repo_btn", self.scene.hover == "repo"),
-                                   lambda: D.button("Abrir repositorio", kind="primary", width=220, height=44,
-                                                    state="hover" if self.scene.hover == "repo" else "normal"))
-        button_y = y + 66 + card.height + SP["lg"]
-        self.scene.image(tag, "repo", button, x, button_y)
-        self.scene.hotspot(tag, "repo", x, button_y, 220, 44, self._open_repo)
 
-    def _about_card(self, width: int, lines: list[str]):
-        height = 76 + len(lines) * 24
-        image = D.glass((width, height), radius=R["card"], shadow=12)
-        D.draw_text(image, (SP["lg"], SP["lg"]), f"{APP_NAME} {VERSION}", size=T["h1"], weight="bold")
-        for index, line in enumerate(lines):
-            D.draw_text(image, (SP["lg"], SP["lg"] + 46 + index * 24), line, size=T["small"], color=C["muted"])
-        return image
+        buttons_y = y + 66 + card.height + SP["lg"]
+        repo = self.scene.cached(("repo_btn", self.scene.hover == "repo"),
+                                 lambda: D.button("Abrir repositorio", kind="primary", width=230, height=44,
+                                                  state="hover" if self.scene.hover == "repo" else "normal"))
+        self.scene.image(tag, "repo", repo, x, buttons_y)
+        self.scene.hotspot(tag, "repo", x, buttons_y, 230, 44, self._open_repo)
+        licencia = self.scene.cached(
+            ("lic_btn", self.scene.hover == "licencia"),
+            lambda: D.button("Ver licencia GPL-3.0", kind="secondary", width=230, height=44,
+                             state="hover" if self.scene.hover == "licencia" else "normal"))
+        self.scene.image(tag, "licencia", licencia, x + 246, buttons_y)
+        self.scene.hotspot(tag, "licencia", x + 246, buttons_y, 230, 44,
+                           lambda: self.act_open(core.ROOT / "LICENSE"))
+
+    def _about_card(self, width: int):
+        """Tarjeta de identidad (misma definicion que usan las previsualizaciones)."""
+        temas = len(list((core.ROOT / "res" / "themes").glob("*/theme.yaml")))
+        return D.about_card(width, app_name=APP_NAME, version=VERSION, topics=temas,
+                            repo_url=REPO_URL, upstream_url=core.UPSTREAM_URL,
+                            python_version=f"{sys.version_info.major}.{sys.version_info.minor}")
 
     def _open_repo(self) -> None:
         import webbrowser
@@ -937,6 +933,9 @@ def render_mockups(directory: Path) -> list[Path]:
             for theme in themes[:40]]
     state = {
         "version": VERSION,
+        "themes_count": len(themes),
+        "repo_url": REPO_URL,
+        "upstream_url": core.UPSTREAM_URL,
         "status_text": "ENCENDIDA" if running else "APAGADA",
         "clock": time.strftime("%H:%M"),
         "nav": [(label, icon) for _key, label, icon in NAV],
