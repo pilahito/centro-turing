@@ -1,0 +1,25 @@
+[Unit]
+Description=Centro Turing (mini pantalla USB)
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+
+; Cambia esta linea por tu usuario (no hace falta root para la pantalla USB)
+User=YOUR_USERNAME_HERE
+
+WorkingDirectory=/opt/centro-turing/
+ExecStart=/usr/bin/python3 main.py
+
+; Reinicia si se cae (por ejemplo, si se desconecta la pantalla)
+Restart=always
+RestartSec=8
+
+ProtectSystem=full
+ProtectHome=read-only
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

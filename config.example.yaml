@@ -1,0 +1,20 @@
+﻿config:
+  COM_PORT: AUTO
+  THEME: ConilES
+  HW_SENSORS: AUTO
+  ETH: AUTO
+  WLO: ''
+  CPU_FAN: AUTO
+  PING: 8.8.8.8
+  WEATHER_API_KEY: ''  # empty = Open-Meteo (no key). Or set OpenWeatherMap key.
+  WEATHER_LATITUDE: 0.0
+  WEATHER_LONGITUDE: 0.0
+  WEATHER_UNITS: metric
+  WEATHER_LANGUAGE: es
+  CLOCK_FORMAT: 24
+
+display:
+  REVISION: A
+  BRIGHTNESS: 25
+  DISPLAY_REVERSE: false
+  RESET_ON_STARTUP: false

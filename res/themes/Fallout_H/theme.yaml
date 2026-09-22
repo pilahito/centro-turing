@@ -1,0 +1,256 @@
+display:
+  DISPLAY_ORIENTATION: landscape
+  DISPLAY_RGB_LED: 0, 0, 0
+  DISPLAY_SIZE: 3.5"
+static_images:
+  BACKGROUND:
+    PATH: background_fo.png
+    X: 0
+    Y: 0
+    WIDTH: 480
+    HEIGHT: 320
+static_text:
+  TEXT_│_:
+    TEXT: │
+    X: 232
+    Y: 251
+    FONT: jetbrains-mono/JetBrainsMonoNL-Regular.ttf
+    FONT_SIZE: 18
+    FONT_COLOR: 7, 93, 43
+    BACKGROUND_IMAGE: background_fo.png
+  TEXT_│2_:
+    TEXT: │
+    X: 232
+    Y: 267
+    FONT: jetbrains-mono/JetBrainsMonoNL-Regular.ttf
+    FONT_SIZE: 18
+    FONT_COLOR: 7, 93, 43
+    BACKGROUND_IMAGE: background_fo.png
+  TEXT_CPU_:
+    TEXT: ──     ──
+    X: 165
+    Y: 63
+    FONT: jetbrains-mono/JetBrainsMonoNL-Regular.ttf
+    FONT_SIZE: 18
+    FONT_COLOR: 7, 93, 43
+    BACKGROUND_IMAGE: background_fo.png
+  TEXT_CPU:
+    TEXT: CPU
+    X: 207
+    Y: 58
+    FONT: jetbrains-mono/JetBrainsMonoNL-Bold.ttf
+    FONT_SIZE: 25
+    FONT_COLOR: 7, 93, 43
+    BACKGROUND_IMAGE: background_fo.png
+  TEXT_GPU_:
+    TEXT: ──     ──
+    X: 165
+    Y: 100
+    FONT: jetbrains-mono/JetBrainsMonoNL-Regular.ttf
+    FONT_SIZE: 18
+    FONT_COLOR: 7, 93, 43
+    BACKGROUND_IMAGE: background_fo.png
+  TEXT_GPU:
+    TEXT: GPU
+    X: 207
+    Y: 95
+    FONT: jetbrains-mono/JetBrainsMonoNL-Bold.ttf
+    FONT_SIZE: 25
+    FONT_COLOR: 7, 93, 43
+    BACKGROUND_IMAGE: background_fo.png
+  TEXT_RAM_FREE:
+    TEXT: RAM FREE
+    X: 0
+    Y: 253
+    FONT: geforce/GeForce-Bold.ttf
+    FONT_SIZE: 15
+    FONT_COLOR: 7, 93, 43
+    BACKGROUND_IMAGE: background_fo.png
+  TEXT_RAM_USED:
+    TEXT: RAM USED
+    X: 0
+    Y: 277
+    FONT: geforce/GeForce-Bold.ttf
+    FONT_SIZE: 15
+    FONT_COLOR: 7, 93, 43
+    BACKGROUND_IMAGE: background_fo.png
+  TEXT_RAM_LOAD:
+    TEXT: RAM LOAD
+    X: 24
+    Y: 223
+    FONT: geforce/GeForce-Bold.ttf
+    FONT_SIZE: 15
+    FONT_COLOR: 7, 93, 43
+    BACKGROUND_IMAGE: background_fo.png
+  TEXT_HDD_PERCENT:
+    TEXT: HDD USED
+    X: 340
+    Y: 223
+    FONT: geforce/GeForce-Bold.ttf
+    FONT_SIZE: 15
+    FONT_COLOR: 7, 93, 43
+    BACKGROUND_IMAGE: background_fo.png
+  TEXT_HDD_FREE:
+    TEXT: HDD FREE
+    X: 270
+    Y: 253
+    FONT: geforce/GeForce-Bold.ttf
+    FONT_SIZE: 15
+    FONT_COLOR: 7, 93, 43
+    BACKGROUND_IMAGE: background_fo.png
+  TEXT_HDD_TOTAL:
+    TEXT: HDD TOTAL
+    X: 270
+    Y: 277
+    FONT: geforce/GeForce-Bold.ttf
+    FONT_SIZE: 15
+    FONT_COLOR: 7, 93, 43
+    BACKGROUND_IMAGE: background_fo.png
+STATS:
+  CPU:
+    PERCENTAGE:
+      INTERVAL: 1
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: false
+        X: 320
+        Y: 53
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 40
+        FONT_COLOR: 20, 240, 116
+        BACKGROUND_IMAGE: background_fo.png
+    TEMPERATURE:
+      INTERVAL: 1
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: false
+        X: 4
+        Y: 53
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 40
+        FONT_COLOR: 20, 240, 116
+        BACKGROUND_IMAGE: background_fo.png
+  GPU:
+    INTERVAL: 1
+    PERCENTAGE:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: false
+        X: 320
+        Y: 90
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 40
+        FONT_COLOR: 20, 240, 116
+        BACKGROUND_IMAGE: background_fo.png
+    TEMPERATURE:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: false
+        X: 4
+        Y: 90
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 40
+        FONT_COLOR: 20, 240, 116
+        BACKGROUND_IMAGE: background_fo.png
+  MEMORY:
+    INTERVAL: 5
+    VIRTUAL:
+      RADIAL:
+        SHOW: true
+        X: 82
+        Y: 183
+        RADIUS: 75
+        WIDTH: 12
+        MIN_VALUE: 0
+        MAX_VALUE: 99
+        ANGLE_START: 90
+        ANGLE_END: 90
+        ANGLE_STEPS: 19
+        ANGLE_SEP: 5
+        CLOCKWISE: true
+        BAR_COLOR: 20, 240, 116
+        SHOW_TEXT: false
+        SHOW_UNIT: true
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 25
+        FONT_COLOR: 7, 93, 43
+        BACKGROUND_IMAGE: background_fo.png
+      FREE:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 128
+        Y: 253
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 20, 240, 116
+        BACKGROUND_IMAGE: background_fo.png
+      USED:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 128
+        Y: 277
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 20, 240, 116
+        BACKGROUND_IMAGE: background_fo.png
+      PERCENT_TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 22
+        Y: 177
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 25
+        FONT_COLOR: 7, 93, 43
+        BACKGROUND_IMAGE: background_fo.png
+  DISK:
+    INTERVAL: 10
+    USED:
+      RADIAL:
+        SHOW: true
+        X: 398
+        Y: 183
+        RADIUS: 75
+        WIDTH: 12
+        MIN_VALUE: 0
+        MAX_VALUE: 99
+        ANGLE_START: 90
+        ANGLE_END: 90
+        ANGLE_STEPS: 19
+        ANGLE_SEP: 5
+        CLOCKWISE: true
+        BAR_COLOR: 20, 240, 116
+        SHOW_TEXT: false
+        SHOW_UNIT: true
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 25
+        FONT_COLOR: 7, 93, 43
+        BACKGROUND_IMAGE: background_fo.png
+      PERCENT_TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 339
+        Y: 177
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 25
+        FONT_COLOR: 7, 93, 43
+        BACKGROUND_IMAGE: background_fo.png
+    FREE:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 390
+        Y: 253
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 20, 240, 116
+        BACKGROUND_IMAGE: background_fo.png
+    TOTAL:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 390
+        Y: 277
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 20, 240, 116
+        BACKGROUND_IMAGE: background_fo.png

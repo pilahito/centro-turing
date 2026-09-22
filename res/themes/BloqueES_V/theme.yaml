@@ -1,0 +1,66 @@
+author: CentroTuring
+display:
+  DISPLAY_SIZE: 3.5"
+  DISPLAY_ORIENTATION: portrait
+  DISPLAY_RGB_LED: 86, 200, 80
+static_images:
+  BACKGROUND:
+    PATH: background.png
+    X: 0
+    Y: 0
+    WIDTH: 320
+    HEIGHT: 480
+STATS:
+  CPU:
+    PERCENTAGE:
+      INTERVAL: 1
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 24
+        Y: 48
+        FONT: digital/DIGITAL-7.TTF
+        FONT_SIZE: 42
+        FONT_COLOR: 86, 200, 80
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: True
+        X: 24
+        Y: 100
+        WIDTH: 180
+        HEIGHT: 14
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 86, 200, 80
+        BAR_OUTLINE: False
+        BACKGROUND_IMAGE: background.png
+  GPU:
+    INTERVAL: 1
+    PERCENTAGE:
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 24
+        Y: 150
+        FONT: digital/DIGITAL-7.TTF
+        FONT_SIZE: 42
+        FONT_COLOR: 86, 200, 80
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+  DATE:
+    INTERVAL: 1
+    HOUR:
+      TEXT:
+        SHOW: True
+        FORMAT: "HH:mm"
+        X: 210
+        Y: 16
+        FONT: roboto-mono/RobotoMono-Bold.ttf
+        FONT_SIZE: 22
+        FONT_COLOR: 86, 200, 80
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt

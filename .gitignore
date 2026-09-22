@@ -1,0 +1,35 @@
+# Centro Turing - .gitignore
+# Entorno y compilacion
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.spec.bak
+version.txt
+
+# Configuracion y estado personal (no se sube)
+config.local.yaml
+tmp/*
+!tmp/.gitkeep
+log.log
+*.log
+screencap.png
+.lanzador*
+
+# Empaquetado
+*.deb
+dist-lanzadores/
+
+# Sistema
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Copias de seguridad de ficheros
+*.bak
+*.bak-*
+*.orig
+*.original

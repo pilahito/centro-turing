@@ -1,0 +1,304 @@
+---
+display:
+  DISPLAY_SIZE: 3.5"
+  DISPLAY_ORIENTATION: portrait
+  DISPLAY_RGB_LED: 0, 0, 0
+static_images:
+  BACKGROUND:
+    PATH: background_fo.png
+    X: 0
+    Y: 0
+    WIDTH: 320
+    HEIGHT: 480
+static_text:
+  # Specify what static text we want to show on the display
+  # You can create additional records here, the name of the entry must be unique and contain at a minimum the PATH.
+  # Text are drawn in the order they are listed below, the top text will be drawn first (so places text back to front)
+  # TEXT_NAME:
+  #   TEXT:
+  #   X:
+  #   Y:
+  #   FONT:
+  #   FONT_SIZE:
+  #   FONT_COLOR: 0, 0, 0
+  #   # BACKGROUND_COLOR: 255, 255, 255 (if you want solid color background)
+  #   BACKGROUND_IMAGE: path of your background picture (if you want transparent background)
+ TEXT_│_:
+   TEXT: │
+   X: 155
+   Y: 377
+   FONT: jetbrains-mono/JetBrainsMonoNL-Regular.ttf
+   FONT_SIZE: 18
+   FONT_COLOR: 7, 93, 43
+   # BACKGROUND_COLOR: 255, 255, 255
+   BACKGROUND_IMAGE: background_fo.png   
+ TEXT_│2_:
+   TEXT: │
+   X: 155
+   Y: 401
+   FONT: jetbrains-mono/JetBrainsMonoNL-Regular.ttf
+   FONT_SIZE: 18
+   FONT_COLOR: 7, 93, 43
+   # BACKGROUND_COLOR: 255, 255, 255
+   BACKGROUND_IMAGE: background_fo.png    
+ TEXT_CPU_:
+   TEXT: ──     ──
+   X: 110
+   Y: 95
+   FONT: jetbrains-mono/JetBrainsMonoNL-Regular.ttf
+   FONT_SIZE: 18
+   FONT_COLOR: 7, 93, 43
+   # BACKGROUND_COLOR: 255, 255, 255
+   BACKGROUND_IMAGE: background_fo.png   
+ TEXT_CPU:
+   TEXT: CPU
+   X: 138
+   Y: 87
+   FONT: jetbrains-mono/JetBrainsMonoNL-Bold.ttf
+   FONT_SIZE: 25
+   FONT_COLOR: 7, 93, 43
+   # BACKGROUND_COLOR: 255, 255, 255
+   BACKGROUND_IMAGE: background_fo.png      
+ TEXT_GPU_:
+   TEXT: ──     ──
+   X: 110
+   Y: 150
+   FONT: jetbrains-mono/JetBrainsMonoNL-Regular.ttf
+   FONT_SIZE: 18
+   FONT_COLOR: 7, 93, 43
+   # BACKGROUND_COLOR: 255, 255, 255
+   BACKGROUND_IMAGE: background_fo.png     
+ TEXT_GPU:
+   TEXT: GPU
+   X: 138
+   Y: 142
+   FONT: jetbrains-mono/JetBrainsMonoNL-Bold.ttf
+   FONT_SIZE: 25
+   FONT_COLOR: 7, 93, 43
+   # BACKGROUND_COLOR: 255, 255, 255
+   BACKGROUND_IMAGE: background_fo.png     
+ TEXT_RAM_FREE:
+   TEXT: RAM FREE
+   X: 0
+   Y: 380
+   FONT: geforce/GeForce-Bold.ttf
+   FONT_SIZE: 15
+   FONT_COLOR: 7, 93, 43
+   # BACKGROUND_COLOR: 255, 255, 255
+   BACKGROUND_IMAGE: background_fo.png     
+ TEXT_RAM_USED:
+   TEXT: RAM USED
+   X: 0
+   Y: 415
+   FONT: geforce/GeForce-Bold.ttf
+   FONT_SIZE: 15
+   FONT_COLOR: 7, 93, 43
+   # BACKGROUND_COLOR: 255, 255, 255
+   BACKGROUND_IMAGE: background_fo.png       
+ TEXT_RAM_LOAD:
+   TEXT: RAM LOAD
+   X: 16
+   Y: 335
+   FONT: geforce/GeForce-Bold.ttf
+   FONT_SIZE: 15
+   FONT_COLOR: 7, 93, 43
+   # BACKGROUND_COLOR: 255, 255, 255
+   BACKGROUND_IMAGE: background_fo.png    
+ TEXT_HDD_PERCENT:
+   TEXT: HDD USED
+   X: 227
+   Y: 335
+   FONT: geforce/GeForce-Bold.ttf
+   FONT_SIZE: 15
+   FONT_COLOR: 7, 93, 43
+   # BACKGROUND_COLOR: 255, 255, 255
+   BACKGROUND_IMAGE: background_fo.png    
+ TEXT_HDD_FREE:
+   TEXT: HDD FREE   
+   X: 180
+   Y: 380
+   FONT: geforce/GeForce-Bold.ttf
+   FONT_SIZE: 15
+   FONT_COLOR: 7, 93, 43
+   # BACKGROUND_COLOR: 255, 255, 255
+   BACKGROUND_IMAGE: background_fo.png      
+ TEXT_HDD_TOTAL:
+   TEXT: HDD TOTAL
+   X: 180
+   Y: 415
+   FONT: geforce/GeForce-Bold.ttf
+   FONT_SIZE: 15
+   FONT_COLOR: 7, 93, 43
+   # BACKGROUND_COLOR: 255, 255, 255
+   BACKGROUND_IMAGE: background_fo.png    
+STATS:
+  CPU:
+    PERCENTAGE:
+      # In seconds. Longer intervals cause this to refresh more slowly.
+      # Setting to lower values will display near real time data,
+      # but may cause significant CPU usage or the display not to update properly
+      INTERVAL: 1
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: False
+        X: 213
+        Y: 80
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 40
+        FONT_COLOR: 20, 240, 116
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background_fo.png
+    TEMPERATURE:
+      INTERVAL: 1
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: False
+        X: 3
+        Y: 80
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 40
+        FONT_COLOR: 20, 240, 116
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background_fo.png       
+  GPU:
+    INTERVAL: 1
+    PERCENTAGE:
+      # In seconds. Longer intervals cause this to refresh more slowly.
+      # Setting to lower values will display near real time data,
+      # but may cause significant CPU usage or the display not to update properly
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: False
+        X: 213
+        Y: 135
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 40
+        FONT_COLOR: 20, 240, 116
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background_fo.png        
+    TEMPERATURE:
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: False
+        X: 3
+        Y: 135
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 40
+        FONT_COLOR: 20, 240, 116
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background_fo.png        
+  MEMORY:
+    # In seconds. Longer intervals cause this to refresh more slowly.
+    # Setting to lower values will display near real time data,
+    # but may cause significant CPU usage or the display not to update properly
+    INTERVAL: 5
+    VIRTUAL:
+      RADIAL:
+        SHOW: True
+        X: 55
+        Y: 275
+        RADIUS: 50
+        WIDTH: 8
+        MIN_VALUE: 0
+        MAX_VALUE: 99
+        ANGLE_START: 90
+        ANGLE_END: 90
+        ANGLE_STEPS: 19
+        ANGLE_SEP: 5
+        CLOCKWISE: True
+        BAR_COLOR: 20, 240, 116
+        SHOW_TEXT: False
+        SHOW_UNIT: True
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 25
+        FONT_COLOR: 7, 93, 43
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background_fo.png   
+      FREE:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 85
+        Y: 380
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 20, 240, 116
+        # BACKGROUND_COLOR: 132, 154, 165
+        BACKGROUND_IMAGE: background_fo.png
+      USED:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 85
+        Y: 415
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 20, 240, 116
+        # BACKGROUND_COLOR: 132, 154, 165
+        BACKGROUND_IMAGE: background_fo.png
+      PERCENT_TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 15
+        Y: 265
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 25
+        FONT_COLOR: 7, 93, 43
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background_fo.png         
+  DISK:
+    INTERVAL: 10
+    USED:
+      RADIAL:
+        SHOW: True
+        X: 265
+        Y: 275
+        RADIUS: 50
+        WIDTH: 8
+        MIN_VALUE: 0
+        MAX_VALUE: 99
+        ANGLE_START: 90
+        ANGLE_END: 90
+        ANGLE_STEPS: 19
+        ANGLE_SEP: 5
+        CLOCKWISE: True
+        BAR_COLOR: 20, 240, 116
+        SHOW_TEXT: False
+        SHOW_UNIT: True
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 25
+        FONT_COLOR: 7, 93, 43
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background_fo.png        
+      PERCENT_TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 226
+        Y: 265
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 25
+        FONT_COLOR: 7, 93, 43
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background_fo.png          
+    FREE:
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 260
+        Y: 380
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 20, 240, 116
+        # BACKGROUND_COLOR: 132, 154, 165
+        BACKGROUND_IMAGE: background_fo.png   
+    TOTAL:
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 260
+        Y: 415
+        FONT: generale-mono/GeneraleMonoA.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 20, 240, 116
+        # BACKGROUND_COLOR: 132, 154, 165
+        BACKGROUND_IMAGE: background_fo.png
+     
+       

@@ -1,0 +1,212 @@
+author: "Ayistax"
+
+display:
+  DISPLAY_SIZE: 3.5"
+  DISPLAY_ORIENTATION: landscape
+  DISPLAY_RGB_LED: 255, 70, 190
+
+static_images:
+  BACKGROUND:
+    PATH: background.png
+    X: 0
+    Y: 0
+    WIDTH: 480
+    HEIGHT: 320
+
+STATS:
+  CPU:
+    PERCENTAGE:
+      INTERVAL: 1
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 20
+        Y: 118
+        WIDTH: 118
+        HEIGHT: 42
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 36
+        FONT_COLOR: 255, 70, 190
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: True
+        X: 20
+        Y: 186
+        WIDTH: 200
+        HEIGHT: 12
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 255, 70, 190
+        BAR_OUTLINE: False
+        BACKGROUND_IMAGE: background.png
+    TEMPERATURE:
+      INTERVAL: 5
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 140
+        Y: 128
+        WIDTH: 80
+        HEIGHT: 28
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 20
+        FONT_COLOR: 245, 245, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+  GPU:
+    INTERVAL: 1
+    PERCENTAGE:
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 256
+        Y: 118
+        WIDTH: 118
+        HEIGHT: 42
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 36
+        FONT_COLOR: 40, 245, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: True
+        X: 256
+        Y: 186
+        WIDTH: 200
+        HEIGHT: 12
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 40, 245, 255
+        BAR_OUTLINE: False
+        BACKGROUND_IMAGE: background.png
+    TEMPERATURE:
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 376
+        Y: 128
+        WIDTH: 80
+        HEIGHT: 28
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 20
+        FONT_COLOR: 245, 245, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+  MEMORY:
+    INTERVAL: 5
+    VIRTUAL:
+      PERCENT_TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 20
+        Y: 256
+        WIDTH: 90
+        HEIGHT: 26
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 20
+        FONT_COLOR: 245, 245, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: True
+        X: 20
+        Y: 288
+        WIDTH: 122
+        HEIGHT: 10
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 255, 70, 190
+        BAR_OUTLINE: False
+        BACKGROUND_IMAGE: background.png
+  DISK:
+    INTERVAL: 10
+    USED:
+      PERCENT_TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 178
+        Y: 256
+        WIDTH: 90
+        HEIGHT: 26
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 20
+        FONT_COLOR: 245, 245, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: True
+        X: 178
+        Y: 288
+        WIDTH: 122
+        HEIGHT: 10
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 40, 245, 255
+        BAR_OUTLINE: False
+        BACKGROUND_IMAGE: background.png
+  NET:
+    INTERVAL: 1
+    ETH:
+      DOWNLOAD:
+        TEXT:
+          SHOW: True
+          X: 336
+          Y: 256
+          WIDTH: 120
+          HEIGHT: 18
+          FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+          FONT_SIZE: 14
+          FONT_COLOR: 245, 245, 255
+          BACKGROUND_IMAGE: background.png
+          ALIGN: left
+          ANCHOR: lt
+      UPLOAD:
+        TEXT:
+          SHOW: True
+          X: 336
+          Y: 278
+          WIDTH: 120
+          HEIGHT: 18
+          FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+          FONT_SIZE: 14
+          FONT_COLOR: 186, 170, 210
+          BACKGROUND_IMAGE: background.png
+          ALIGN: left
+          ANCHOR: lt
+  DATE:
+    INTERVAL: 1
+    DAY:
+      TEXT:
+        FORMAT: "EEE dd MMM"
+        SHOW: True
+        X: 332
+        Y: 58
+        WIDTH: 128
+        HEIGHT: 16
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 11
+        FONT_COLOR: 186, 170, 210
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+    HOUR:
+      TEXT:
+        FORMAT: "HH:mm"
+        SHOW: True
+        X: 332
+        Y: 32
+        WIDTH: 128
+        HEIGHT: 26
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 22
+        FONT_COLOR: 245, 245, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt

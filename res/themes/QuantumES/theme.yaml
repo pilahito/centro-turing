@@ -1,0 +1,212 @@
+author: "Ayistax"
+display:
+  DISPLAY_SIZE: 3.5"
+  DISPLAY_ORIENTATION: landscape
+  DISPLAY_RGB_LED: 255, 140, 30
+
+static_images:
+  BACKGROUND:
+    PATH: background.png
+    X: 0
+    Y: 0
+    WIDTH: 480
+    HEIGHT: 320
+
+STATS:
+  CPU:
+    PERCENTAGE:
+      INTERVAL: 1
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 78
+        Y: 48
+        WIDTH: 140
+        HEIGHT: 52
+        FONT: digital/DIGITAL-7.TTF
+        FONT_SIZE: 52
+        FONT_COLOR: 255, 160, 30
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: True
+        X: 150
+        Y: 122
+        WIDTH: 130
+        HEIGHT: 18
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 255, 160, 40
+        BAR_OUTLINE: False
+        BACKGROUND_IMAGE: background.png
+    TEMPERATURE:
+      INTERVAL: 5
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 86
+        Y: 114
+        WIDTH: 70
+        HEIGHT: 24
+        FONT: digital/DIGITAL-7.TTF
+        FONT_SIZE: 22
+        FONT_COLOR: 255, 186, 70
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+  GPU:
+    INTERVAL: 1
+    PERCENTAGE:
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 78
+        Y: 184
+        WIDTH: 140
+        HEIGHT: 52
+        FONT: digital/DIGITAL-7.TTF
+        FONT_SIZE: 52
+        FONT_COLOR: 255, 160, 30
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: True
+        X: 150
+        Y: 262
+        WIDTH: 130
+        HEIGHT: 18
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 80, 220, 230
+        BAR_OUTLINE: False
+        BACKGROUND_IMAGE: background.png
+    TEMPERATURE:
+      INTERVAL: 5
+      TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 86
+        Y: 252
+        WIDTH: 70
+        HEIGHT: 24
+        FONT: digital/DIGITAL-7.TTF
+        FONT_SIZE: 22
+        FONT_COLOR: 255, 186, 70
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+  MEMORY:
+    INTERVAL: 5
+    VIRTUAL:
+      PERCENT_TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 318
+        Y: 158
+        WIDTH: 64
+        HEIGHT: 22
+        FONT: roboto-mono/RobotoMono-Bold.ttf
+        FONT_SIZE: 14
+        FONT_COLOR: 180, 230, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: True
+        X: 318
+        Y: 72
+        WIDTH: 28
+        HEIGHT: 80
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 140, 210, 255
+        BAR_OUTLINE: False
+        BACKGROUND_IMAGE: background.png
+  DISK:
+    INTERVAL: 10
+    USED:
+      PERCENT_TEXT:
+        SHOW: True
+        SHOW_UNIT: True
+        X: 390
+        Y: 158
+        WIDTH: 70
+        HEIGHT: 22
+        FONT: roboto-mono/RobotoMono-Bold.ttf
+        FONT_SIZE: 14
+        FONT_COLOR: 255, 200, 90
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: True
+        X: 392
+        Y: 72
+        WIDTH: 28
+        HEIGHT: 80
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 255, 190, 70
+        BAR_OUTLINE: False
+        BACKGROUND_IMAGE: background.png
+  NET:
+    INTERVAL: 1
+    ETH:
+      DOWNLOAD:
+        TEXT:
+          SHOW: True
+          X: 318
+          Y: 232
+          WIDTH: 140
+          HEIGHT: 22
+          FONT: roboto-mono/RobotoMono-Bold.ttf
+          FONT_SIZE: 14
+          FONT_COLOR: 80, 230, 235
+          BACKGROUND_IMAGE: background.png
+          ALIGN: left
+          ANCHOR: lt
+      UPLOAD:
+        TEXT:
+          SHOW: True
+          X: 318
+          Y: 276
+          WIDTH: 140
+          HEIGHT: 22
+          FONT: roboto-mono/RobotoMono-Bold.ttf
+          FONT_SIZE: 14
+          FONT_COLOR: 140, 190, 255
+          BACKGROUND_IMAGE: background.png
+          ALIGN: left
+          ANCHOR: lt
+  DATE:
+    INTERVAL: 1
+    DAY:
+      TEXT:
+        FORMAT: "dd MMM"
+        SHOW: True
+        X: 150
+        Y: 30
+        WIDTH: 90
+        HEIGHT: 14
+        FONT: roboto-mono/RobotoMono-Bold.ttf
+        FONT_SIZE: 10
+        FONT_COLOR: 180, 140, 70
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+    HOUR:
+      TEXT:
+        FORMAT: "HH:mm"
+        SHOW: True
+        X: 250
+        Y: 28
+        WIDTH: 60
+        HEIGHT: 16
+        FONT: digital/DIGITAL-7.TTF
+        FONT_SIZE: 16
+        FONT_COLOR: 255, 176, 48
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
