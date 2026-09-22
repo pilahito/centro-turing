@@ -21,11 +21,24 @@
 import mimetypes
 import shutil
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from pathlib import Path
 
 from library.lcd.lcd_comm import *
 
 SCREENSHOT_FILE = "screencap.png"
 WEBSERVER_PORT = 5678
+# Carpeta de trabajo del proyecto (el panel guarda aqui su estado y los mockups).
+# Antes se usaba un fichero suelto llamado "tmp": con la carpeta tmp/ del panel
+# la pantalla virtual fallaba con PermissionError.
+TMP_DIR = Path("tmp")
+
+
+def _write_screenshot(image: Image.Image) -> None:
+    """Guarda la pantalla simulada y la deja lista para el navegador."""
+    TMP_DIR.mkdir(exist_ok=True)
+    temporal = TMP_DIR / "pantalla-simulada.png"
+    image.save(temporal, "PNG")
+    shutil.copyfile(temporal, SCREENSHOT_FILE)
 
 
 # This webserver offer a blank page displaying simulated screen with auto-refresh
@@ -61,8 +74,7 @@ class LcdSimulated(LcdComm):
                  update_queue: Optional[queue.Queue] = None):
         LcdComm.__init__(self, com_port, display_width, display_height, update_queue)
         self.screen_image = Image.new("RGB", (self.get_width(), self.get_height()), (255, 255, 255))
-        self.screen_image.save("tmp", "PNG")
-        shutil.copyfile("tmp", SCREENSHOT_FILE)
+        _write_screenshot(self.screen_image)
         self.orientation = Orientation.PORTRAIT
 
         try:
@@ -81,7 +93,8 @@ class LcdSimulated(LcdComm):
 
     def closeSerial(self):
         logger.debug("Shutting down web server")
-        self.webServer.shutdown()
+        if getattr(self, "webServer", None) is not None:
+            self.webServer.shutdown()
 
     def InitializeComm(self):
         pass
@@ -109,8 +122,7 @@ class LcdSimulated(LcdComm):
         # Just draw the screen again with the new width/height based on orientation
         with self.update_queue_mutex:
             self.screen_image = Image.new("RGB", (self.get_width(), self.get_height()), (255, 255, 255))
-            self.screen_image.save("tmp", "PNG")
-            shutil.copyfile("tmp", SCREENSHOT_FILE)
+            _write_screenshot(self.screen_image)
 
     def DisplayPILImage(
             self,
@@ -141,5 +153,4 @@ class LcdSimulated(LcdComm):
 
         with self.update_queue_mutex:
             self.screen_image.paste(image, (x, y))
-            self.screen_image.save("tmp", "PNG")
-            shutil.copyfile("tmp", SCREENSHOT_FILE)
+            _write_screenshot(self.screen_image)
