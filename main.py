@@ -155,6 +155,15 @@ if __name__ == "__main__":
             "exit": "Salir",
         }
 
+    def _tray_icon_path():
+        """Icono de bandeja: nuestra marca (res/icons/tray) o el icono de siempre."""
+        for candidate in (MAIN_DIRECTORY / "res" / "icons" / "tray" / "64.png",
+                          MAIN_DIRECTORY / "res" / "icons" / "centro-turing.png",
+                          MAIN_DIRECTORY / "res" / "icons" / "monitor-icon-17865" / "64.png"):
+            if candidate.is_file():
+                return candidate
+        return MAIN_DIRECTORY / "res" / "icons" / "monitor-icon-17865" / "64.png"
+
     def _open_centro_turing():
         """Abre el panel de Centro Turing sin parar el monitor.
 
@@ -239,7 +248,7 @@ if __name__ == "__main__":
         tray_icon = pystray.Icon(
             name='Turing System Monitor',
             title=_tl["title"],
-            icon=Image.open(MAIN_DIRECTORY / "res/icons/monitor-icon-17865/64.png"),
+            icon=Image.open(_tray_icon_path()),
             menu=pystray.Menu(
                 pystray.MenuItem(
                     text=_tl["open"],

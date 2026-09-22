@@ -342,16 +342,48 @@ def icon(name: str, *, size: int = 18, color: str = C["muted"], accent: str | No
 
 
 def brand_mark(size: int = 34, accent: str = C["accent"], accent_2: str = C["accent_2"]) -> Image.Image:
-    """Logotipo: cuadrado redondeado con gradiente y rombo interior."""
-    def paint(draw: ImageDraw.ImageDraw, s: int, box: tuple[int, int]) -> None:
-        draw.rounded_rectangle([(s, s), (box[0] - s, box[1] - s)], radius=7 * s, fill=rgba(accent))
-        draw.polygon([(box[0] // 2, box[1] // 3), (box[0] * 2 // 3, box[1] // 2),
-                      (box[0] // 2, box[1] * 2 // 3), (box[0] // 3, box[1] // 2)],
-                     fill=rgba(mix(accent, accent_2, 0.55)))
-        draw.polygon([(box[0] // 2, box[1] // 3), (box[0] * 2 // 3, box[1] // 2), (box[0] // 2, box[1] // 2)],
-                     fill=(255, 255, 255, 70))
+    """Logotipo: losa oscura con filo de neon y monograma 'T' en degradado.
 
-    return _antialias((size, size), paint, scale=4)
+    Marca 2026 del proyecto (variante C de tools/logo_lab.py). Se dibuja a 4x y se
+    reduce, y todos los elementos se miden en proporcion al tamano: funciona igual
+    a 16 px (barra de tareas y bandeja) que a 112 px (cartel del repositorio).
+    """
+    accent = accent or C["accent"]
+    accent_2 = accent_2 or C["accent_2"]
+    scale = 4
+    n = max(24, size * scale)
+
+    img = _tile_for_mark(n)
+    gloss = Image.new("RGBA", (n, n), (0, 0, 0, 0))
+    ImageDraw.Draw(gloss).rounded_rectangle([(0, 0), (n, int(n * 0.55))],
+                                            radius=int(n * 0.24), fill=(255, 255, 255, 20))
+    img.alpha_composite(gloss.filter(ImageFilter.GaussianBlur(n * 0.02)))
+
+    draw = ImageDraw.Draw(img, "RGBA")
+    draw.rounded_rectangle([(int(n * 0.035), int(n * 0.035)), (int(n * 0.965), int(n * 0.965))],
+                           radius=int(n * 0.22), outline=rgba(accent, 210),
+                           width=max(2, int(n * 0.017)))
+
+    bar_w, bar_h = int(n * 0.50), max(2, int(n * 0.115))
+    img.alpha_composite(gradient_image((bar_w, bar_h), accent, accent_2).convert("RGBA"),
+                        (int(n * 0.25), int(n * 0.275)))
+    stem_w, stem_h = max(2, int(n * 0.125)), max(2, int(n * 0.30))
+    img.alpha_composite(gradient_image((stem_w, stem_h), accent, darken(accent_2, 0.10)).convert("RGBA"),
+                        (int(n * 0.4375), int(n * 0.365)))
+
+    r = max(1, int(n * 0.040))
+    px, py = int(n * 0.735), int(n * 0.655)
+    draw.ellipse([(px - r, py - r), (px + r, py + r)], fill=(255, 255, 255, 235))
+    return img.resize((size, size), Image.LANCZOS)
+
+
+def _tile_for_mark(n: int) -> Image.Image:
+    """Losa del logotipo: degradado diagonal oscuro con esquinas redondeadas."""
+    tile = gradient_image((n, n), lighten(C["surface_3"], 0.06), darken(C["bg"], 0.10),
+                          diagonal=True).convert("RGBA")
+    img = Image.new("RGBA", (n, n), (0, 0, 0, 0))
+    img.paste(tile, (0, 0), rounded_mask((n, n), int(n * 0.24)))
+    return img
 
 
 def button(label: str, *, state: str = "normal", kind: str = "primary", width: int = 150,
@@ -770,13 +802,13 @@ def social_banner(path: Path, *, width: int = 1280, height: int = 640) -> Path:
         image = Image.alpha_composite(image, glow.filter(ImageFilter.GaussianBlur(radius * 0.5)))
 
     image.alpha_composite(brand_mark(112), (96, 150))
-    draw_text(image, (96, 300), "Centro Turing 3.0", size=64, weight="bold", color=C["text"])
+    draw_text(image, (96, 300), "Centro Turing 3.1", size=64, weight="bold", color=C["text"])
     draw_text(image, (100, 384), "Panel unificado para pantallas Turing / XuanFang",
               size=30, weight="regular", color=C["muted"])
     draw_text(image, (100, 424), "La misma interfaz en Windows y Linux · GPL-3.0 · gratis",
               size=24, weight="regular", color=C["faint"])
     x = 100
-    for label, kind in (("Windows", "accent"), ("Linux", "ok"), ("140 temas", "neutral"),
+    for label, kind in (("Windows", "accent"), ("Linux", "ok"), ("68 temas", "neutral"),
                         ("Sin candados", "warn")):
         badge = chip(label, kind=kind, height=40, padding=20)
         image.alpha_composite(badge, (x, 496))
