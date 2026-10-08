@@ -41,7 +41,7 @@ from pathlib import Path
 # Constantes
 # --------------------------------------------------------------------------------------
 APP_NAME = "Centro Turing"
-VERSION = "3.2.0"
+VERSION = "3.2.1"
 REPO_URL = "https://github.com/pilahito/centro-turing"
 UPSTREAM_URL = "https://github.com/mathoudebine/turing-smart-screen-python"
 
