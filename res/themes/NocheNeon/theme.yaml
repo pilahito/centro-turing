@@ -205,7 +205,7 @@ STATS:
         WIDTH: 128
         HEIGHT: 26
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
-        FONT_SIZE: 22
+        FONT_SIZE: 19
         FONT_COLOR: 245, 245, 255
         BACKGROUND_IMAGE: background.png
         ALIGN: left

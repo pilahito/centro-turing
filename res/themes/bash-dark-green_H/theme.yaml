@@ -103,7 +103,7 @@ STATS:
         SHOW: true
         X: 123
         Y: 286
-        RADIUS: 50
+        RADIUS: 33
         WIDTH: 8
         MIN_VALUE: 0
         MAX_VALUE: 100
@@ -116,7 +116,7 @@ STATS:
         SHOW_TEXT: true
         SHOW_UNIT: false
         FONT: roboto-mono/RobotoMono-Regular.ttf
-        FONT_SIZE: 20
+        FONT_SIZE: 16
         FONT_COLOR: 53, 191, 92
         BACKGROUND_IMAGE: background.png
       TEXT:

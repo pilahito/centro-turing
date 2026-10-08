@@ -65,10 +65,10 @@ STATS:
       INTERVAL: 1
       RADIAL:
         SHOW: true
-        X: 248
+        X: 240
         Y: 160
-        RADIUS: 142
-        WIDTH: 142
+        RADIUS: 74
+        WIDTH: 74
         MIN_VALUE: 0
         MAX_VALUE: 100
         ANGLE_START: 270
@@ -83,7 +83,7 @@ STATS:
         SHOW_TEXT: true
         SHOW_UNIT: true
         FONT: generale-mono/GeneraleMonoA.ttf
-        FONT_SIZE: 60
+        FONT_SIZE: 46
         FONT_COLOR: 255, 255, 255
         BACKGROUND_IMAGE: background.png
     TEMPERATURE:

@@ -201,8 +201,8 @@ STATS:
         FORMAT: "HH:mm"
         SHOW: True
         X: 250
-        Y: 28
-        WIDTH: 60
+        Y: 26
+        WIDTH: 90
         HEIGHT: 16
         FONT: digital/DIGITAL-7.TTF
         FONT_SIZE: 16

@@ -76,7 +76,8 @@ class LcdCommRevA(LcdComm):
 
         return None
 
-    def SendCommand(self, cmd: Command, x: int, y: int, ex: int, ey: int, bypass_queue: bool = False):
+    @staticmethod
+    def _command_buffer(cmd: Command, x: int, y: int, ex: int, ey: int) -> bytearray:
         byteBuffer = bytearray(6)
         byteBuffer[0] = (x >> 2)
         byteBuffer[1] = (((x & 3) << 6) + (y >> 4))
@@ -84,6 +85,10 @@ class LcdCommRevA(LcdComm):
         byteBuffer[3] = (((ex & 63) << 2) + (ey >> 8))
         byteBuffer[4] = (ey & 255)
         byteBuffer[5] = cmd
+        return byteBuffer
+
+    def SendCommand(self, cmd: Command, x: int, y: int, ex: int, ey: int, bypass_queue: bool = False):
+        byteBuffer = self._command_buffer(cmd, x, y, ex, ey)
 
         # If no queue for async requests, or if asked explicitly to do the request sequentially: do request now
         if not self.update_queue or bypass_queue:
@@ -91,6 +96,8 @@ class LcdCommRevA(LcdComm):
         else:
             # Lock queue mutex then queue the request
             with self.update_queue_mutex:
+                if self._desconectado:
+                    return  # Centro Turing: pantalla desconectada, al volver se redibuja todo
                 self.update_queue.put((self.WriteData, [byteBuffer]))
 
     def _hello(self):
@@ -210,10 +217,21 @@ class LcdCommRevA(LcdComm):
 
         rgb565le = image_to_RGB565(image, "little")
 
-        self.SendCommand(Command.DISPLAY_BITMAP, x0, y0, x1, y1)
+        if not self.update_queue:
+            self.SendCommand(Command.DISPLAY_BITMAP, x0, y0, x1, y1)
+            with self.update_queue_mutex:
+                # Send image data by multiple of "display width" bytes
+                for chunk in chunked(rgb565le, width * 8):
+                    self.SendLine(chunk)
+            return
 
-        # Lock queue mutex then queue all the requests for the image data
+        # Centro Turing: cabecera DISPLAY_BITMAP y datos en un unico bloque de la cola (con el mutex).
+        # Antes la cabecera se encolaba por separado: si la pantalla se reconectaba justo en medio,
+        # podian quedar datos de imagen sin su cabecera y la pantalla los leeria como ordenes.
         with self.update_queue_mutex:
+            if self._desconectado:
+                return
+            self.update_queue.put((self.WriteData, [self._command_buffer(Command.DISPLAY_BITMAP, x0, y0, x1, y1)]))
             # Send image data by multiple of "display width" bytes
             for chunk in chunked(rgb565le, width * 8):
-                self.SendLine(chunk)
+                self.update_queue.put((self.WriteLine, [chunk]))

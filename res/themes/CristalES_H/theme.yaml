@@ -1,0 +1,329 @@
+# Tema CristalES_H para Centro Turing (3.5" landscape, 480x320)
+# Generado el 08/10/2026. Reloj: respeta CLOCK_FORMAT de config.yaml (12 o 24 h).
+author: Ayistax
+display:
+  DISPLAY_SIZE: 3.5"
+  DISPLAY_ORIENTATION: landscape
+  DISPLAY_RGB_LED: 160, 140, 255
+static_images:
+  BACKGROUND:
+    PATH: background.png
+    X: 0
+    Y: 0
+    WIDTH: 480
+    HEIGHT: 320
+STATS:
+  DATE:
+    INTERVAL: 1
+    HOUR:
+      TEXT:
+        FORMAT: HH:mm
+        SHOW: true
+        SHOW_UNIT: true
+        X: 214
+        Y: 34
+        WIDTH: 248
+        HEIGHT: 62
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 48
+        FONT_COLOR: 28, 36, 74
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        FORMAT_12: h:mm a
+    WEEKDAY:
+      TEXT:
+        FORMAT: EEEE
+        SHOW: true
+        SHOW_UNIT: true
+        X: 216
+        Y: 104
+        WIDTH: 246
+        HEIGHT: 24
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 19
+        FONT_COLOR: 132, 96, 226
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+    DAY:
+      TEXT:
+        FORMAT: d 'de' MMMM 'de' y
+        SHOW: true
+        SHOW_UNIT: true
+        X: 216
+        Y: 132
+        WIDTH: 246
+        HEIGHT: 22
+        FONT: roboto/Roboto-Regular.ttf
+        FONT_SIZE: 15
+        FONT_COLOR: 96, 104, 140
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+  WEATHER:
+    INTERVAL: 600
+    TEMPERATURE:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: false
+        X: 18
+        Y: 34
+        WIDTH: 130
+        HEIGHT: 60
+        FONT: roboto/Roboto-Light.ttf
+        FONT_SIZE: 52
+        FONT_COLOR: 28, 36, 74
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+    WEATHER_DESCRIPTION:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: false
+        X: 20
+        Y: 100
+        WIDTH: 168
+        HEIGHT: 22
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 15
+        FONT_COLOR: 28, 36, 74
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+    TEMPERATURE_FELT:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: false
+        X: 100
+        Y: 124
+        WIDTH: 84
+        HEIGHT: 18
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 28, 36, 74
+        BACKGROUND_IMAGE: background.png
+        ALIGN: right
+        ANCHOR: rt
+    HUMIDITY:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: false
+        X: 100
+        Y: 146
+        WIDTH: 84
+        HEIGHT: 18
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 28, 36, 74
+        BACKGROUND_IMAGE: background.png
+        ALIGN: right
+        ANCHOR: rt
+  CPU:
+    PERCENTAGE:
+      INTERVAL: 2
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 16
+        Y: 204
+        WIDTH: 76
+        HEIGHT: 34
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 28
+        FONT_COLOR: 28, 36, 74
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: true
+        X: 18
+        Y: 290
+        WIDTH: 68
+        HEIGHT: 6
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 236, 92, 118
+        BAR_OUTLINE: false
+        BACKGROUND_IMAGE: background.png
+    TEMPERATURE:
+      INTERVAL: 3
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 18
+        Y: 244
+        WIDTH: 72
+        HEIGHT: 20
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 15
+        FONT_COLOR: 236, 92, 118
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+  GPU:
+    INTERVAL: 2
+    PERCENTAGE:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 109
+        Y: 204
+        WIDTH: 76
+        HEIGHT: 34
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 28
+        FONT_COLOR: 28, 36, 74
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: true
+        X: 111
+        Y: 290
+        WIDTH: 68
+        HEIGHT: 6
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 132, 96, 226
+        BAR_OUTLINE: false
+        BACKGROUND_IMAGE: background.png
+    TEMPERATURE:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 111
+        Y: 244
+        WIDTH: 72
+        HEIGHT: 20
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 15
+        FONT_COLOR: 132, 96, 226
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+    MEMORY_PERCENT:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 141
+        Y: 265
+        WIDTH: 40
+        HEIGHT: 16
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 28, 36, 74
+        BACKGROUND_IMAGE: background.png
+        ALIGN: right
+        ANCHOR: rt
+  MEMORY:
+    INTERVAL: 3
+    VIRTUAL:
+      PERCENT_TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 202
+        Y: 204
+        WIDTH: 76
+        HEIGHT: 34
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 28
+        FONT_COLOR: 28, 36, 74
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      USED:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 200
+        Y: 246
+        WIDTH: 76
+        HEIGHT: 18
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 30, 160, 164
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: true
+        X: 204
+        Y: 290
+        WIDTH: 68
+        HEIGHT: 6
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 30, 160, 164
+        BAR_OUTLINE: false
+        BACKGROUND_IMAGE: background.png
+  DISK:
+    INTERVAL: 10
+    USED:
+      PERCENT_TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 295
+        Y: 204
+        WIDTH: 76
+        HEIGHT: 34
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 28
+        FONT_COLOR: 28, 36, 74
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 293
+        Y: 246
+        WIDTH: 76
+        HEIGHT: 18
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 222, 148, 30
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      GRAPH:
+        SHOW: true
+        X: 297
+        Y: 290
+        WIDTH: 68
+        HEIGHT: 6
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 222, 148, 30
+        BAR_OUTLINE: false
+        BACKGROUND_IMAGE: background.png
+  NET:
+    INTERVAL: 1
+    ETH:
+      DOWNLOAD:
+        TEXT:
+          SHOW: true
+          SHOW_UNIT: true
+          X: 384
+          Y: 220
+          WIDTH: 80
+          HEIGHT: 20
+          FONT: roboto/Roboto-Bold.ttf
+          FONT_SIZE: 14
+          FONT_COLOR: 28, 36, 74
+          BACKGROUND_IMAGE: background.png
+          ALIGN: right
+          ANCHOR: rt
+      UPLOAD:
+        TEXT:
+          SHOW: true
+          SHOW_UNIT: true
+          X: 384
+          Y: 264
+          WIDTH: 80
+          HEIGHT: 20
+          FONT: roboto/Roboto-Bold.ttf
+          FONT_SIZE: 14
+          FONT_COLOR: 52, 120, 226
+          BACKGROUND_IMAGE: background.png
+          ALIGN: right
+          ANCHOR: rt

@@ -14,7 +14,7 @@ static_text:
   CPU_MODEL:
     TEXT: Your CPU model here
     X: 75
-    Y: 85
+    Y: 83
     FONT: generale-mono/GeneraleMonoA.ttf
     FONT_SIZE: 15
     FONT_COLOR: 255, 239, 8
@@ -22,7 +22,7 @@ static_text:
   GPU_MODEL:
     TEXT: Your GPU model here
     X: 75
-    Y: 143
+    Y: 141
     FONT: generale-mono/GeneraleMonoA.ttf
     FONT_SIZE: 15
     FONT_COLOR: 255, 239, 8
@@ -30,7 +30,7 @@ static_text:
   RAM_MODEL:
     TEXT: Your RAM model here
     X: 75
-    Y: 202
+    Y: 200
     FONT: generale-mono/GeneraleMonoA.ttf
     FONT_SIZE: 15
     FONT_COLOR: 255, 239, 8
@@ -38,7 +38,7 @@ static_text:
   DISK_USED:
     TEXT: DISK USED
     X: 64
-    Y: 231
+    Y: 229
     FONT: generale-mono/GeneraleMonoA.ttf
     FONT_SIZE: 15
     FONT_COLOR: 255, 239, 8
@@ -46,7 +46,7 @@ static_text:
   DISK_FREE:
     TEXT: DISK FREE
     X: 64
-    Y: 261
+    Y: 259
     FONT: generale-mono/GeneraleMonoA.ttf
     FONT_SIZE: 15
     FONT_COLOR: 255, 239, 8
@@ -220,7 +220,7 @@ STATS:
         X: 15
         Y: 303
         FONT: generale-mono/GeneraleMonoA.ttf
-        FONT_SIZE: 18
+        FONT_SIZE: 15
         FONT_COLOR: 255, 239, 8
         BACKGROUND_IMAGE: background.png
         WIDTH: 240
@@ -229,7 +229,7 @@ STATS:
       TEXT:
         SHOW: true
         X: 290
-        Y: 21
+        Y: 25
         FONT: generale-mono/GeneraleMonoA.ttf
         FONT_SIZE: 15
         FONT_COLOR: 255, 239, 8

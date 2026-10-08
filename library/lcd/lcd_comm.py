@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import contextlib
 import copy
 import math
 import os
@@ -42,6 +43,15 @@ class Orientation(IntEnum):
     LANDSCAPE = 2
     REVERSE_PORTRAIT = 1
     REVERSE_LANDSCAPE = 3
+
+
+# The screen resets itself when the program starts, so its COM port can disappear or change for a
+# few seconds: opening it is retried instead of giving up (and exiting) on the first failure.
+# Centro Turing: with COM_WAIT_SECONDS: 0 the retries never stop (the screen can take minutes to
+# enumerate after a cold boot), so the logon task keeps waiting quietly instead of giving up.
+SERIAL_OPEN_ATTEMPTS = 10
+SERIAL_OPEN_RETRY_DELAY = 1  # seconds
+SERIAL_OPEN_RETRY_DELAY_MAX = 15  # seconds, when waiting indefinitely
 
 
 class LcdComm(ABC):
@@ -77,6 +87,20 @@ class LcdComm(ABC):
             ImageFont.FreeTypeFont # value= a loaded freetype font
         ] = {}
 
+        # Centro Turing: reconexion en caliente. Mientras la pantalla esta desconectada no se encolan
+        # peticiones nuevas (la cola creceria sin limite); al volver se llama a on_reconnect() para
+        # reinicializarla y redibujar el tema (lo asigna library/display.py).
+        self._desconectado = False
+        self.on_reconnect = None
+
+        # Remember the bounding box drawn by the last DisplayText() call at a given (x, y) origin, so the
+        # next call can redraw the union of the old and new areas and fully erase any previous text that is
+        # narrower/shorter than what replaces it, regardless of font metrics ("ghosting" prevention).
+        self.text_bbox_cache: Dict[
+            Tuple[int, int],  # key=(x, y) origin as passed to DisplayText()
+            Tuple[int, int, int, int]  # value=(left, top, right, bottom) actually drawn
+        ] = {}
+
     def get_width(self) -> int:
         if self.orientation == Orientation.PORTRAIT or self.orientation == Orientation.REVERSE_PORTRAIT:
             return self.display_width
@@ -89,29 +113,94 @@ class LcdComm(ABC):
         else:
             return self.display_width
 
+    def _detectar_pantalla(self) -> Optional[str]:
+        try:
+            return self.auto_detect_com_port()
+        except Exception:
+            return None
+
     def openSerial(self):
-        if self.com_port == 'AUTO':
-            self.com_port = self.auto_detect_com_port()
-            if not self.com_port:
-                logger.error(
-                    "Cannot find COM port automatically, please run Configuration again and select COM port manually")
-                try:
-                    sys.exit(0)
-                except:
-                    os._exit(0)
-            else:
-                logger.debug(f"Auto detected COM port: {self.com_port}")
-        else:
-            logger.debug(f"Static COM port: {self.com_port}")
+        # self.com_port is kept as configured ("AUTO" or a port name): the port is detected again at
+        # every attempt, since it can change while the screen resets or is reconnected.
+        # Centro Turing: la pantalla se busca SIEMPRE por VID/PID o numero de serie (USB35INCHIPSV2) y el
+        # COM_PORT de config.yaml solo se usa si no se encuentra asi. COM_WAIT_SECONDS en config.yaml:
+        # 0 o ausente = esperar indefinidamente (en arranque en frio Windows puede tardar minutos).
+        try:
+            from library import config as _cfg
+            espera = float(_cfg.CONFIG_DATA.get("config", {}).get("COM_WAIT_SECONDS", 0) or 0)
+        except Exception:
+            espera = 0.0
+        indefinido = espera <= 0
+        limite = None if indefinido else time.monotonic() + max(espera, SERIAL_OPEN_ATTEMPTS)
 
         try:
-            self.lcd_serial = serial.Serial(self.com_port, 115200, timeout=1, rtscts=True)
-        except Exception as e:
-            logger.error(f"Cannot open COM port {self.com_port}: {e}")
-            try:
-                sys.exit(0)
-            except:
-                os._exit(0)
+            from library import recuperar_usb
+            recuperar_usb.reiniciar_espera()
+        except Exception:
+            recuperar_usb = None
+
+        inicio = time.monotonic()
+        intento = 0
+        while True:
+            intento += 1
+            # Avisos solo en los primeros intentos y luego de vez en cuando (el log no se llena)
+            avisar = intento <= 3 or intento % 20 == 0
+            if intento > 1 and recuperar_usb is not None:
+                try:
+                    recuperar_usb.quizas_recuperar()  # Windows + admin: reinicia USB en error de vez en cuando
+                except Exception:
+                    pass
+
+            detectado = self._detectar_pantalla()
+            if detectado:
+                com_port = detectado
+                if self.com_port != 'AUTO' and str(detectado).upper() != str(self.com_port).upper():
+                    logger.warning(f"La pantalla esta en {detectado} (config.yaml dice {self.com_port}): se usa {detectado}")
+                else:
+                    logger.debug(f"Auto detected COM port: {com_port}")
+            elif self.com_port == 'AUTO':
+                com_port = None
+                if avisar:
+                    logger.warning(f"Esperando a que Windows detecte la pantalla por USB (intento {intento})")
+            else:
+                com_port = self.com_port
+                logger.debug(f"Static COM port: {com_port}")
+
+            if com_port:
+                try:
+                    self.lcd_serial = serial.Serial(com_port, 115200, timeout=1, rtscts=True)
+                    self.puerto_abierto = com_port
+                    if intento > 1:
+                        logger.info(f"Pantalla conectada en {com_port} tras {time.monotonic() - inicio:.0f} s")
+                    return
+                except Exception as e:
+                    if avisar:
+                        causa = str(e).lower()
+                        if ("filenotfounderror" in causa or "no puede encontrar el archivo" in causa
+                                or "cannot find the file" in causa):
+                            logger.warning(f"Esperando a que Windows detecte la pantalla ({com_port} no existe "
+                                           f"todavia, intento {intento})")
+                        elif ("permissionerror" in causa or "acceso denegado" in causa
+                              or "access is denied" in causa):
+                            logger.warning(f"El puerto {com_port} esta ocupado por otro programa (intento {intento})")
+                        else:
+                            logger.warning(f"Cannot open COM port {com_port}: {e} - retrying ({intento})")
+
+            if limite is not None and time.monotonic() >= limite:
+                break
+            time.sleep(min(SERIAL_OPEN_RETRY_DELAY * intento, SERIAL_OPEN_RETRY_DELAY_MAX))
+
+        logger.error(
+            f"Cannot open COM port after {intento} attempts. If the screen is connected, run "
+            f"Configuration again and select the COM port manually")
+        if threading.current_thread() is not threading.main_thread():
+            # sys.exit() en el hilo de la cola solo terminaria ese hilo: el proceso seguiria vivo
+            # con la pantalla congelada. Se cierra el proceso entero para que se pueda relanzar.
+            os._exit(1)
+        try:
+            sys.exit(0)
+        except:
+            os._exit(0)
 
     def closeSerial(self):
         if self.lcd_serial is not None:
@@ -137,6 +226,9 @@ class LcdComm(ABC):
         self.WriteLine(bytes(byteBuffer))
 
     def SendLine(self, line: bytes):
+        if self._desconectado:
+            # Pantalla desconectada: se descarta (al reconectar se redibuja todo el tema)
+            return
         if self.update_queue:
             # Queue the request. Mutex is locked by caller to queue multiple lines
             self.update_queue.put((self.WriteLine, [line]))
@@ -155,13 +247,10 @@ class LcdComm(ABC):
             # We timed-out trying to write to our device, slow things down.
             logger.warning("(Write line) Too fast! Slow down!")
         except serial.SerialException:
-            # Error writing data to device: close and reopen serial port, try to write again
+            # Error writing data to device: close and reopen serial port (waits for the screen to come back)
             logger.error(
                 "SerialException: Failed to send serial data to device. Closing and reopening COM port before retrying once.")
-            self.closeSerial()
-            time.sleep(1)
-            self.openSerial()
-            self.serial_write(line)
+            self._reconectar()
 
     def ReadData(self, readSize: int):
         try:
@@ -172,13 +261,45 @@ class LcdComm(ABC):
             # We timed-out trying to read from our device, slow things down.
             logger.warning("(Read data) Too fast! Slow down!")
         except serial.SerialException:
-            # Error writing data to device: close and reopen serial port, try to read again
+            # Error reading data from device: close and reopen serial port (waits for the screen to come back)
             logger.error(
                 "SerialException: Failed to read serial data from device. Closing and reopening COM port before retrying once.")
+            self._reconectar()
+            return b""
+
+    def _reconectar(self):
+        """La pantalla se ha desconectado (cable, hub, suspension): se espera a que vuelva.
+
+        No se reenvia la linea que fallo: era un trozo de una orden anterior y la pantalla
+        recien conectada la interpretaria como basura. Al volver se vacia la cola (peticiones
+        antiguas) y on_reconnect() reinicializa la pantalla y redibuja el tema.
+        """
+        # Sin cola (modo directo) quien escribe puede tener ya el mutex: no se toma (evita bloqueo)
+        cerrojo = self.update_queue_mutex if self.update_queue is not None else contextlib.nullcontext()
+        with cerrojo:
+            self._desconectado = True
+        try:
             self.closeSerial()
-            time.sleep(1)
-            self.openSerial()
-            return self.serial_read(readSize)
+        except Exception:
+            pass
+        logger.warning("Pantalla desconectada: esperando a que vuelva a aparecer por USB")
+        time.sleep(1)
+        self.openSerial()  # espera (con COM_WAIT_SECONDS: 0, indefinidamente) a la pantalla
+        # Con el mutex: ninguna imagen puede quedar a medias entre el vaciado y la reactivacion
+        with cerrojo:
+            if self.update_queue is not None:
+                try:
+                    while True:
+                        self.update_queue.get_nowait()
+                except queue.Empty:
+                    pass
+            self.text_bbox_cache.clear()
+            self._desconectado = False
+        logger.info(f"Pantalla reconectada en {getattr(self, 'puerto_abierto', self.com_port)}")
+        callback = self.on_reconnect
+        if callback:
+            # En otro hilo: el callback encola ordenes y este es el hilo que vacia la cola
+            threading.Thread(target=callback, name="Reconexion_pantalla", daemon=True).start()
 
     @staticmethod
     def auto_detect_com_port() -> Optional[str]:
@@ -290,6 +411,17 @@ class LcdComm(ABC):
             # Let's extend the bounding box to the next whole pixel in all directions
             left, top = math.floor(left), math.floor(top)
             right, bottom = math.ceil(right), math.ceil(bottom)
+
+            # Union with the area drawn last time at this same origin, so a new value that is narrower/shorter
+            # than the previous one still gets its old pixels repainted with the background (prevents ghosting
+            # of stale glyph fragments, independent of font metrics).
+            bbox_key = (x, y)
+            prev_bbox = self.text_bbox_cache.get(bbox_key)
+            self.text_bbox_cache[bbox_key] = (left, top, right, bottom)
+            if prev_bbox is not None:
+                prev_left, prev_top, prev_right, prev_bottom = prev_bbox
+                left, top = min(left, prev_left), min(top, prev_top)
+                right, bottom = max(right, prev_right), max(bottom, prev_bottom)
         else:
             left, top, right, bottom = x, y, x + width, y + height
 

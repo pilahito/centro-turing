@@ -37,9 +37,11 @@ STATS:
     INTERVAL: 1
     HOUR:
       TEXT:
+        ANCHOR: rt
+        ALIGN: right
         SHOW: True
         FORMAT: "HH:mm"
-        X: 360
+        X: 468
         Y: 16
         FONT: roboto-mono/RobotoMono-Bold.ttf
         FONT_SIZE: 22
