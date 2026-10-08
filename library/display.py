@@ -132,6 +132,20 @@ class Display:
         # Set orientation
         self.lcd.SetOrientation(_get_theme_orientation())
 
+        # Centro Turing: si la pantalla se desconecta y vuelve (cable, hub, suspension), lcd_comm
+        # espera a que reaparezca y llama a esto para dejarla como estaba
+        self.lcd.on_reconnect = self._al_reconectar
+
+    def _al_reconectar(self):
+        logger.info("Pantalla reconectada: se reinicializa y se redibuja el tema")
+        try:
+            self.turn_on()
+            self.lcd.SetOrientation(_get_theme_orientation())
+            self.display_static_images()
+            self.display_static_text()
+        except Exception as e:
+            logger.error(f"No se pudo redibujar la pantalla tras reconectarla: {e}")
+
     def turn_on(self):
         # Turn screen on in case it was turned off previously
         self.lcd.ScreenOn()

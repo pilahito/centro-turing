@@ -56,11 +56,11 @@ STATS:
       TEXT:
         SHOW: True
         FORMAT: "HH:mm"
-        X: 210
+        X: 310
         Y: 16
         FONT: roboto-mono/RobotoMono-Bold.ttf
         FONT_SIZE: 22
         FONT_COLOR: 86, 200, 80
         BACKGROUND_IMAGE: background.png
-        ALIGN: left
-        ANCHOR: lt
+        ALIGN: right
+        ANCHOR: rt

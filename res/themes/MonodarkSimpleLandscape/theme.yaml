@@ -18,7 +18,7 @@ static_text:
     TEXT: CPU
     X: 66
     Y: 100
-    FONT: geforce/geforce-bold.ttf
+    FONT: geforce/GeForce-Bold.ttf
     FONT_SIZE: 20
     FONT_COLOR: 150, 150, 150
     BACKGROUND_IMAGE: background.png   
@@ -27,7 +27,7 @@ static_text:
     TEXT: USAGE
     X: 60
     Y: 150
-    FONT: geforce/geforce-bold.ttf
+    FONT: geforce/GeForce-Bold.ttf
     FONT_SIZE: 15
     FONT_COLOR: 180, 180, 180
     BACKGROUND_IMAGE: background.png 
@@ -36,7 +36,7 @@ static_text:
     TEXT: TEMPERATURE
     X: 30
     Y: 230
-    FONT: geforce/geforce-bold.ttf
+    FONT: geforce/GeForce-Bold.ttf
     FONT_SIZE: 15
     FONT_COLOR: 180, 180, 180
     BACKGROUND_IMAGE: background.png 
@@ -45,7 +45,7 @@ static_text:
     TEXT: GPU
     X: 225
     Y: 100
-    FONT: geforce/geforce-bold.ttf
+    FONT: geforce/GeForce-Bold.ttf
     FONT_SIZE: 20
     FONT_COLOR: 150, 150, 150
     BACKGROUND_IMAGE: background.png   
@@ -54,7 +54,7 @@ static_text:
     TEXT: USAGE
     X: 220
     Y: 150
-    FONT: geforce/geforce-bold.ttf
+    FONT: geforce/GeForce-Bold.ttf
     FONT_SIZE: 15
     FONT_COLOR: 180, 180, 180
     BACKGROUND_IMAGE: background.png 
@@ -63,7 +63,7 @@ static_text:
     TEXT: TEMPERATURE
     X: 187
     Y: 230
-    FONT: geforce/geforce-bold.ttf
+    FONT: geforce/GeForce-Bold.ttf
     FONT_SIZE: 15
     FONT_COLOR: 180, 180, 180
     BACKGROUND_IMAGE: background.png 
@@ -72,7 +72,7 @@ static_text:
     TEXT: MEMORY
     X: 357
     Y: 70
-    FONT: geforce/geforce-bold.ttf
+    FONT: geforce/GeForce-Bold.ttf
     FONT_SIZE: 20
     FONT_COLOR: 150, 150, 150
     BACKGROUND_IMAGE: background.png   
@@ -81,7 +81,7 @@ static_text:
     TEXT: Used    -
     X: 335
     Y: 100
-    FONT: geforce/geforce-bold.ttf
+    FONT: geforce/GeForce-Bold.ttf
     FONT_SIZE: 15
     FONT_COLOR: 180, 180, 180
     BACKGROUND_IMAGE: background.png   
@@ -90,7 +90,7 @@ static_text:
     TEXT: Free    -
     X: 338
     Y: 117
-    FONT: geforce/geforce-bold.ttf
+    FONT: geforce/GeForce-Bold.ttf
     FONT_SIZE: 15
     FONT_COLOR: 180, 180, 180
     BACKGROUND_IMAGE: background.png  
@@ -99,7 +99,7 @@ static_text:
     TEXT: Disk C
     X: 369
     Y: 227
-    FONT: geforce/geforce-bold.ttf
+    FONT: geforce/GeForce-Bold.ttf
     FONT_SIZE: 20
     FONT_COLOR: 150, 150, 150
     BACKGROUND_IMAGE: background.png 
@@ -108,7 +108,7 @@ static_text:
     TEXT: Used    -
     X: 335
     Y: 257
-    FONT: geforce/geforce-bold.ttf
+    FONT: geforce/GeForce-Bold.ttf
     FONT_SIZE: 15
     FONT_COLOR: 180, 180, 180
     BACKGROUND_IMAGE: background.png   
@@ -117,7 +117,7 @@ static_text:
     TEXT: Free    -
     X: 338
     Y: 274
-    FONT: geforce/geforce-bold.ttf
+    FONT: geforce/GeForce-Bold.ttf
     FONT_SIZE: 15
     FONT_COLOR: 180, 180, 180
     BACKGROUND_IMAGE: background.png  
@@ -133,7 +133,7 @@ STATS:
         Y: 170
         WIDTH: 130
         HEIGHT: 45
-        FONT: geforce/geforce-bold.ttf
+        FONT: geforce/GeForce-Bold.ttf
         FONT_SIZE: 40
         FONT_COLOR: 230, 230, 230
         BACKGROUND_IMAGE: background.png
@@ -148,7 +148,7 @@ STATS:
         Y: 250
         WIDTH: 130
         HEIGHT: 45
-        FONT: geforce/geforce-bold.ttf
+        FONT: geforce/GeForce-Bold.ttf
         FONT_SIZE: 40
         FONT_COLOR: 230, 230, 230
         BACKGROUND_IMAGE: background.png
@@ -165,7 +165,7 @@ STATS:
         Y: 170
         WIDTH: 130
         HEIGHT: 45
-        FONT: geforce/geforce-bold.ttf
+        FONT: geforce/GeForce-Bold.ttf
         FONT_SIZE: 40
         FONT_COLOR: 230, 230, 230
         BACKGROUND_IMAGE: background.png
@@ -180,7 +180,7 @@ STATS:
         Y: 250
         WIDTH: 130
         HEIGHT: 45
-        FONT: geforce/geforce-bold.ttf
+        FONT: geforce/GeForce-Bold.ttf
         FONT_SIZE: 40
         FONT_COLOR: 230, 230, 230
         BACKGROUND_IMAGE: background.png
@@ -208,7 +208,7 @@ STATS:
         Y: 100
         WIDTH: 70
         HEIGHT: 12
-        FONT: geforce/geforce-bold.ttf
+        FONT: geforce/GeForce-Bold.ttf
         FONT_SIZE: 15
         FONT_COLOR: 230, 230, 230
         BACKGROUND_IMAGE: background.png
@@ -221,7 +221,7 @@ STATS:
         Y: 117
         WIDTH: 70
         HEIGHT: 12
-        FONT: geforce/geforce-bold.ttf
+        FONT: geforce/GeForce-Bold.ttf
         FONT_SIZE: 15
         FONT_COLOR: 230, 230, 230
         BACKGROUND_IMAGE: background.png
@@ -249,7 +249,7 @@ STATS:
         Y: 257
         WIDTH: 70
         HEIGHT: 12
-        FONT: geforce/geforce-bold.ttf
+        FONT: geforce/GeForce-Bold.ttf
         FONT_SIZE: 15
         FONT_COLOR: 230, 230, 230
         BACKGROUND_IMAGE: background.png
@@ -263,7 +263,7 @@ STATS:
         Y: 274
         WIDTH: 70
         HEIGHT: 12
-        FONT: geforce/geforce-bold.ttf
+        FONT: geforce/GeForce-Bold.ttf
         FONT_SIZE: 15
         FONT_COLOR: 230, 230, 230
         BACKGROUND_IMAGE: background.png

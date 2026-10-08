@@ -1,0 +1,346 @@
+# Tema OrbitaES_H para Centro Turing (3.5" landscape, 480x320)
+# Generado el 08/10/2026. Reloj: respeta CLOCK_FORMAT de config.yaml (12 o 24 h).
+author: Ayistax
+display:
+  DISPLAY_SIZE: 3.5"
+  DISPLAY_ORIENTATION: landscape
+  DISPLAY_RGB_LED: 70, 220, 255
+static_images:
+  BACKGROUND:
+    PATH: background.png
+    X: 0
+    Y: 0
+    WIDTH: 480
+    HEIGHT: 320
+STATS:
+  DATE:
+    INTERVAL: 1
+    HOUR:
+      TEXT:
+        FORMAT: HH:mm
+        SHOW: true
+        SHOW_UNIT: true
+        X: 116
+        Y: 10
+        WIDTH: 248
+        HEIGHT: 44
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 36
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: center
+        ANCHOR: mt
+        FORMAT_12: h:mm a
+    WEEKDAY:
+      TEXT:
+        FORMAT: EEEE
+        SHOW: true
+        SHOW_UNIT: true
+        X: 116
+        Y: 56
+        WIDTH: 120
+        HEIGHT: 18
+        FONT: roboto-mono/RobotoMono-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 70, 220, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: right
+        ANCHOR: rt
+    DAY:
+      TEXT:
+        FORMAT: dd MMM yyyy
+        SHOW: true
+        SHOW_UNIT: true
+        X: 244
+        Y: 56
+        WIDTH: 120
+        HEIGHT: 18
+        FONT: roboto-mono/RobotoMono-Medium.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+  WEATHER:
+    INTERVAL: 600
+    TEMPERATURE:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: false
+        X: 14
+        Y: 12
+        WIDTH: 92
+        HEIGHT: 40
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 32
+        FONT_COLOR: 255, 196, 70
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+    TEMPERATURE_FELT:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: false
+        X: 56
+        Y: 58
+        WIDTH: 50
+        HEIGHT: 16
+        FONT: roboto-mono/RobotoMono-Medium.ttf
+        FONT_SIZE: 10
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: right
+        ANCHOR: rt
+    WEATHER_DESCRIPTION:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: false
+        X: 250
+        Y: 268
+        WIDTH: 216
+        HEIGHT: 22
+        FONT: roboto-mono/RobotoMono-Bold.ttf
+        FONT_SIZE: 15
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+    HUMIDITY:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: false
+        X: 320
+        Y: 290
+        WIDTH: 60
+        HEIGHT: 18
+        FONT: roboto-mono/RobotoMono-Bold.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 70, 220, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+  NET:
+    INTERVAL: 1
+    ETH:
+      DOWNLOAD:
+        TEXT:
+          SHOW: true
+          SHOW_UNIT: true
+          X: 392
+          Y: 12
+          WIDTH: 76
+          HEIGHT: 18
+          FONT: roboto-mono/RobotoMono-Bold.ttf
+          FONT_SIZE: 12
+          FONT_COLOR: 236, 242, 255
+          BACKGROUND_IMAGE: background.png
+          ALIGN: right
+          ANCHOR: rt
+      UPLOAD:
+        TEXT:
+          SHOW: true
+          SHOW_UNIT: true
+          X: 392
+          Y: 38
+          WIDTH: 76
+          HEIGHT: 18
+          FONT: roboto-mono/RobotoMono-Bold.ttf
+          FONT_SIZE: 12
+          FONT_COLOR: 236, 242, 255
+          BACKGROUND_IMAGE: background.png
+          ALIGN: right
+          ANCHOR: rt
+  CPU:
+    PERCENTAGE:
+      INTERVAL: 2
+      RADIAL:
+        SHOW: true
+        X: 60
+        Y: 150
+        RADIUS: 48
+        WIDTH: 8
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 135
+        ANGLE_END: 45
+        ANGLE_STEPS: 24
+        ANGLE_SEP: 3
+        CLOCKWISE: true
+        BAR_COLOR: 255, 196, 70
+        BAR_BACKGROUND_COLOR: 28, 40, 72
+        DRAW_BAR_BACKGROUND: true
+        SHOW_TEXT: true
+        SHOW_UNIT: true
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 20
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+    TEMPERATURE:
+      INTERVAL: 3
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 20
+        Y: 216
+        WIDTH: 80
+        HEIGHT: 20
+        FONT: roboto-mono/RobotoMono-Bold.ttf
+        FONT_SIZE: 14
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: center
+        ANCHOR: mt
+  GPU:
+    INTERVAL: 2
+    PERCENTAGE:
+      RADIAL:
+        SHOW: true
+        X: 180
+        Y: 150
+        RADIUS: 48
+        WIDTH: 8
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 135
+        ANGLE_END: 45
+        ANGLE_STEPS: 24
+        ANGLE_SEP: 3
+        CLOCKWISE: true
+        BAR_COLOR: 70, 220, 255
+        BAR_BACKGROUND_COLOR: 28, 40, 72
+        DRAW_BAR_BACKGROUND: true
+        SHOW_TEXT: true
+        SHOW_UNIT: true
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 20
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+    TEMPERATURE:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 140
+        Y: 216
+        WIDTH: 80
+        HEIGHT: 20
+        FONT: roboto-mono/RobotoMono-Bold.ttf
+        FONT_SIZE: 14
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: center
+        ANCHOR: mt
+    MEMORY_PERCENT:
+      RADIAL:
+        SHOW: true
+        X: 420
+        Y: 150
+        RADIUS: 48
+        WIDTH: 8
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 135
+        ANGLE_END: 45
+        ANGLE_STEPS: 24
+        ANGLE_SEP: 3
+        CLOCKWISE: true
+        BAR_COLOR: 70, 220, 255
+        BAR_BACKGROUND_COLOR: 28, 40, 72
+        DRAW_BAR_BACKGROUND: true
+        SHOW_TEXT: true
+        SHOW_UNIT: true
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 20
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+    MEMORY_USED:
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 376
+        Y: 216
+        WIDTH: 88
+        HEIGHT: 20
+        FONT: roboto-mono/RobotoMono-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: center
+        ANCHOR: mt
+  MEMORY:
+    INTERVAL: 3
+    VIRTUAL:
+      RADIAL:
+        SHOW: true
+        X: 300
+        Y: 150
+        RADIUS: 48
+        WIDTH: 8
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 135
+        ANGLE_END: 45
+        ANGLE_STEPS: 24
+        ANGLE_SEP: 3
+        CLOCKWISE: true
+        BAR_COLOR: 255, 196, 70
+        BAR_BACKGROUND_COLOR: 28, 40, 72
+        DRAW_BAR_BACKGROUND: true
+        SHOW_TEXT: true
+        SHOW_UNIT: true
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 20
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+      USED:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 256
+        Y: 216
+        WIDTH: 88
+        HEIGHT: 20
+        FONT: roboto-mono/RobotoMono-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: center
+        ANCHOR: mt
+  DISK:
+    INTERVAL: 10
+    USED:
+      PERCENT_TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 14
+        Y: 268
+        WIDTH: 80
+        HEIGHT: 26
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 22
+        FONT_COLOR: 236, 242, 255
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+      TEXT:
+        SHOW: true
+        SHOW_UNIT: true
+        X: 140
+        Y: 272
+        WIDTH: 86
+        HEIGHT: 20
+        FONT: roboto-mono/RobotoMono-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 120, 140, 180
+        BACKGROUND_IMAGE: background.png
+        ALIGN: right
+        ANCHOR: rt
+      GRAPH:
+        SHOW: true
+        X: 14
+        Y: 298
+        WIDTH: 212
+        HEIGHT: 6
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 255, 196, 70
+        BAR_OUTLINE: false
+        BACKGROUND_IMAGE: background.png

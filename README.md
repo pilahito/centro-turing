@@ -9,6 +9,8 @@ con nuestros temas, nuestros sensores y nuestros lanzadores. Créditos y licenci
 completa en [CREDITOS.md](CREDITOS.md); lo que se ha dejado fuera, en
 [docs/legado.md](docs/legado.md).
 
+Novedades de la versión 3.2.0 (8 de octubre de 2026): [CHANGELOG.md](CHANGELOG.md).
+
 ![Centro Turing](res/docs/centro-turing-banner.png)
 
 ## Qué hay
@@ -64,8 +66,8 @@ sudo usermod -aG dialout "$USER"   # y vuelve a iniciar sesion
 Paquete `.deb`:
 
 ```bash
-python3 tools/build_deb.py --version 3.1.0
-sudo dpkg -i dist/centro-turing_3.1.0_all.deb
+python3 tools/build_deb.py --version 3.2.0
+sudo dpkg -i dist/centro-turing_3.2.0_all.deb
 ```
 
 ## El panel
@@ -73,7 +75,7 @@ sudo dpkg -i dist/centro-turing_3.1.0_all.deb
 Seis secciones, con la pantalla siempre a la vista:
 
 - **Panel** — estado en vivo, vista previa del tema, control del monitor (encender / apagar / reiniciar), tema y brillo.
-- **Temas** — los 68 temas instalados, con filtros por tamaño (3.5" H, 3.5" V, 5", 8.8") y búsqueda.
+- **Temas** — los 76 temas instalados, con filtros por tamaño (3.5" H, 3.5" V, 5", 8.8") y búsqueda.
 - **Ajustes** — puerto, revisión, sensores, idioma del clima, arranque automático.
 - **Registro** — el `log.log` del monitor.
 - **Sistema** — versión de Python, dependencias y hardware detectado.

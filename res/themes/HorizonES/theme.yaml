@@ -182,9 +182,9 @@ STATS:
       DOWNLOAD:
         TEXT:
           SHOW: True
-          X: 390
+          X: 380
           Y: 248
-          WIDTH: 74
+          WIDTH: 84
           HEIGHT: 18
           FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
           FONT_SIZE: 13
@@ -195,9 +195,9 @@ STATS:
       UPLOAD:
         TEXT:
           SHOW: True
-          X: 390
+          X: 380
           Y: 276
-          WIDTH: 74
+          WIDTH: 84
           HEIGHT: 18
           FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
           FONT_SIZE: 13
@@ -212,11 +212,11 @@ STATS:
         SHOW: True
         SHOW_UNIT: False
         X: 168
-        Y: 10
-        WIDTH: 58
-        HEIGHT: 20
+        Y: 8
+        WIDTH: 60
+        HEIGHT: 14
         FONT: roboto-mono/RobotoMono-Bold.ttf
-        FONT_SIZE: 14
+        FONT_SIZE: 12
         FONT_COLOR: 64, 210, 255
         BACKGROUND_IMAGE: background.png
         ALIGN: left
@@ -224,12 +224,12 @@ STATS:
     WEATHER_DESCRIPTION:
       TEXT:
         SHOW: True
-        X: 226
-        Y: 12
-        WIDTH: 64
-        HEIGHT: 16
+        X: 168
+        Y: 22
+        WIDTH: 124
+        HEIGHT: 12
         FONT: roboto-mono/RobotoMono-Bold.ttf
-        FONT_SIZE: 11
+        FONT_SIZE: 10
         FONT_COLOR: 170, 186, 210
         BACKGROUND_IMAGE: background.png
         ALIGN: left
@@ -279,7 +279,7 @@ STATS:
       TEXT:
         SHOW: True
         X: 174
-        Y: 228
+        Y: 235
         WIDTH: 140
         HEIGHT: 16
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
@@ -292,7 +292,7 @@ STATS:
       TEXT:
         SHOW: True
         X: 320
-        Y: 228
+        Y: 235
         WIDTH: 56
         HEIGHT: 16
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
@@ -321,9 +321,9 @@ STATS:
       TEXT:
         FORMAT: "dd MMM"
         SHOW: True
-        X: 292
+        X: 296
         Y: 14
-        WIDTH: 88
+        WIDTH: 58
         HEIGHT: 18
         FONT: roboto/Roboto-Bold.ttf
         FONT_SIZE: 12
@@ -335,13 +335,13 @@ STATS:
       TEXT:
         FORMAT: "HH:mm:ss"
         SHOW: True
-        X: 392
-        Y: 12
-        WIDTH: 72
+        X: 358
+        Y: 14
+        WIDTH: 110
         HEIGHT: 22
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
         FONT_SIZE: 16
         FONT_COLOR: 240, 244, 255
         BACKGROUND_IMAGE: background.png
-        ALIGN: left
-        ANCHOR: lt
+        ALIGN: right
+        ANCHOR: rt
