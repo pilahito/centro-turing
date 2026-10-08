@@ -1,0 +1,331 @@
+# Tema ChipDorado_H para Centro Turing (3.5" landscape, 480x320)
+# 08/10/2026. Cifras colocadas sobre chips sueltos de la placa, no en una cuadricula
+# Reloj segun CLOCK_FORMAT (12 o 24 h). Tiempo: Open-Meteo.
+author: Ayistax
+display:
+  DISPLAY_SIZE: 3.5"
+  DISPLAY_ORIENTATION: landscape
+  DISPLAY_RGB_LED: 212, 175, 55
+static_images:
+  BACKGROUND:
+    PATH: background.png
+    X: 0
+    Y: 0
+    WIDTH: 480
+    HEIGHT: 320
+STATS:
+  DATE:
+    INTERVAL: 1
+    HOUR:
+      TEXT:
+        FORMAT: HH:mm
+        FORMAT_12: h:mm a
+        FORMAT_24: HH:mm
+        SHOW: true
+        X: 136
+        Y: 14
+        WIDTH: 200
+        HEIGHT: 24
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 16
+        FONT_COLOR: 230, 245, 220
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: false
+    WEEKDAY:
+      TEXT:
+        FORMAT: EEEE
+        SHOW: true
+        X: 136
+        Y: 42
+        WIDTH: 100
+        HEIGHT: 16
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 180, 220, 170
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: false
+    DAY:
+      TEXT:
+        FORMAT: d MMM y
+        SHOW: true
+        X: 240
+        Y: 42
+        WIDTH: 120
+        HEIGHT: 16
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 180, 220, 170
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: false
+  WEATHER:
+    INTERVAL: 600
+    TEMPERATURE:
+      TEXT:
+        SHOW: true
+        X: 12
+        Y: 12
+        WIDTH: 108
+        HEIGHT: 22
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 14
+        FONT_COLOR: 212, 175, 55
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: false
+    WEATHER_DESCRIPTION:
+      TEXT:
+        SHOW: true
+        X: 12
+        Y: 38
+        WIDTH: 112
+        HEIGHT: 28
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 10
+        FONT_COLOR: 190, 220, 180
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: false
+    TEMPERATURE_FELT:
+      TEXT:
+        SHOW: true
+        X: 12
+        Y: 70
+        WIDTH: 108
+        HEIGHT: 14
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 10
+        FONT_COLOR: 190, 220, 180
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: false
+    HUMIDITY:
+      TEXT:
+        SHOW: true
+        X: 12
+        Y: 86
+        WIDTH: 70
+        HEIGHT: 14
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 11
+        FONT_COLOR: 212, 175, 55
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: false
+  CPU:
+    PERCENTAGE:
+      INTERVAL: 2
+      TEXT:
+        SHOW: true
+        X: 368
+        Y: 16
+        WIDTH: 100
+        HEIGHT: 22
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 15
+        FONT_COLOR: 230, 245, 220
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: true
+      GRAPH:
+        SHOW: true
+        X: 368
+        Y: 62
+        WIDTH: 100
+        HEIGHT: 7
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 212, 175, 55
+        BAR_OUTLINE: false
+        BACKGROUND_IMAGE: background.png
+    TEMPERATURE:
+      INTERVAL: 3
+      TEXT:
+        SHOW: true
+        X: 368
+        Y: 42
+        WIDTH: 100
+        HEIGHT: 16
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 212, 175, 55
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: true
+  GPU:
+    INTERVAL: 2
+    PERCENTAGE:
+      TEXT:
+        SHOW: true
+        X: 14
+        Y: 128
+        WIDTH: 86
+        HEIGHT: 22
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 15
+        FONT_COLOR: 230, 245, 220
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: true
+      GRAPH:
+        SHOW: true
+        X: 14
+        Y: 174
+        WIDTH: 156
+        HEIGHT: 7
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 80, 200, 140
+        BAR_OUTLINE: false
+        BACKGROUND_IMAGE: background.png
+    TEMPERATURE:
+      TEXT:
+        SHOW: true
+        X: 104
+        Y: 130
+        WIDTH: 70
+        HEIGHT: 16
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 12
+        FONT_COLOR: 180, 220, 170
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: true
+    MEMORY_PERCENT:
+      TEXT:
+        SHOW: true
+        X: 14
+        Y: 154
+        WIDTH: 80
+        HEIGHT: 16
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 11
+        FONT_COLOR: 212, 175, 55
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: true
+  MEMORY:
+    INTERVAL: 3
+    VIRTUAL:
+      PERCENT_TEXT:
+        SHOW: true
+        X: 190
+        Y: 114
+        WIDTH: 120
+        HEIGHT: 22
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 15
+        FONT_COLOR: 230, 245, 220
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: true
+      TEXT:
+        SHOW: true
+        X: 190
+        Y: 140
+        WIDTH: 130
+        HEIGHT: 16
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 11
+        FONT_COLOR: 190, 220, 180
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: true
+      GRAPH:
+        SHOW: true
+        X: 190
+        Y: 160
+        WIDTH: 130
+        HEIGHT: 7
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 212, 175, 55
+        BAR_OUTLINE: false
+        BACKGROUND_IMAGE: background.png
+  DISK:
+    INTERVAL: 10
+    USED:
+      PERCENT_TEXT:
+        SHOW: true
+        X: 348
+        Y: 114
+        WIDTH: 120
+        HEIGHT: 20
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 14
+        FONT_COLOR: 230, 245, 220
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: true
+      TEXT:
+        SHOW: true
+        X: 348
+        Y: 138
+        WIDTH: 120
+        HEIGHT: 16
+        FONT: roboto/Roboto-Medium.ttf
+        FONT_SIZE: 11
+        FONT_COLOR: 190, 220, 180
+        BACKGROUND_IMAGE: background.png
+        ALIGN: left
+        ANCHOR: lt
+        SHOW_UNIT: true
+      GRAPH:
+        SHOW: true
+        X: 348
+        Y: 158
+        WIDTH: 118
+        HEIGHT: 7
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 80, 200, 140
+        BAR_OUTLINE: false
+        BACKGROUND_IMAGE: background.png
+  NET:
+    INTERVAL: 1
+    ETH:
+      DOWNLOAD:
+        TEXT:
+          SHOW: true
+          X: 14
+          Y: 248
+          WIDTH: 200
+          HEIGHT: 16
+          FONT: roboto/Roboto-Medium.ttf
+          FONT_SIZE: 12
+          FONT_COLOR: 212, 175, 55
+          BACKGROUND_IMAGE: background.png
+          ALIGN: left
+          ANCHOR: lt
+          SHOW_UNIT: true
+      UPLOAD:
+        TEXT:
+          SHOW: true
+          X: 240
+          Y: 248
+          WIDTH: 210
+          HEIGHT: 16
+          FONT: roboto/Roboto-Medium.ttf
+          FONT_SIZE: 12
+          FONT_COLOR: 190, 220, 180
+          BACKGROUND_IMAGE: background.png
+          ALIGN: left
+          ANCHOR: lt
+          SHOW_UNIT: true

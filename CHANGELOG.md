@@ -1,5 +1,22 @@
 # Cambios
 
+## 3.2.2 — 2026-10-08
+
+Veinte temas nuevos de 3,5" en horizontal (480×320), además de los de 3.2.1.
+Cada uno tiene una disposición distinta (no es un cambio de color): reloj
+gigante, lista lateral, tiempo dominante, barra de medidores, cuatro esferas,
+esquinas HUD, diagonal, gráficas de historial, consola, chips, anillo, tres
+columnas, bahías, perímetro, teletipo, tacómetro, marcador, bandas, bloque
+asimétrico y marquesina. Español, reloj según `CLOCK_FORMAT`, tiempo Open-Meteo,
+CPU, GPU (uso, temperatura y VRAM), RAM, disco y red. Fondos dibujados, sin
+personajes con copyright. No cambia el tema activo de `config.yaml`.
+
+- Anime: `CerezoLuna_H`, `EscenarioIdol_H`, `NubeKawaii_H`, `SumiEspada_H`, `CabinaMecha_H`.
+- Cyberpunk: `ReticulaNeon_H`, `DiagonalNC_H`, `GraficaLluvia_H`, `ConsolaFallo_H`.
+- Técnica: `ChipDorado_H`, `AnilloHolo_H`, `ColumnasMatrix_H`, `BahiasRack_H`, `SatelitePlano_H`.
+- Otros: `SolVapor_H`, `TacometroRace_H`, `MarcadorPixel_H`, `BandasMar_H`, `AsimetricaNebula_H`, `MarquesinaArcade_H`.
+
+
 ## 3.2.1 — 2026-10-08
 
 Veinte temas nuevos de 3,5" en horizontal (480×320), en español, con reloj
