@@ -1,5 +1,18 @@
 # Cambios
 
+## 3.2.1 — 2026-10-08
+
+Veinte temas nuevos de 3,5" en horizontal (480×320), en español, con reloj
+según `CLOCK_FORMAT` y tiempo en vivo (Open-Meteo). Cada uno trae CPU, GPU
+(uso, temperatura y VRAM), RAM, disco y red, y el fondo está dibujado (no es
+una pantalla vacía). No cambia el tema activo de `config.yaml`.
+
+- Anime: `SakuraNoche_H`, `IdolNeon_H`, `ChibiPastel_H`, `TintaNinja_H`, `MechaES_H`.
+- Cyberpunk: `CiberMagenta_H`, `AmarilloNC_H`, `LluviaHolo_H`, `FalloRojo_H`.
+- Técnica: `PlacaPCB_H`, `HoloHUD_H`, `MatrixLluvia_H`, `RackServo_H`, `PlanoAzul_H`.
+- Otros: `VaporOcaso_H`, `CarbonoRace_H`, `PixelBloque_H`, `MarProfundo_H`, `NebulosaES_H`, `ArcadeRetro_H`.
+
+
 ## 3.2.0 — 2026-10-08
 
 Actualización del monitor y de los temas de 3,5". No cambia `config.yaml`:

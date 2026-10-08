@@ -933,7 +933,7 @@ def compose(size: tuple[int, int], layers: list[tuple[Image.Image, tuple[int, in
     return canvas
 
 
-def about_card(width: int, *, app_name: str = "Centro Turing", version: str = "3.2.0",
+def about_card(width: int, *, app_name: str = "Centro Turing", version: str = "3.2.1",
                topics: int = 0, repo_url: str = "", upstream_url: str = "",
                python_version: str = "",
                license_line: str = "(C) 2021 Matthieu Houdebine (mathoudebine) "
@@ -1105,7 +1105,7 @@ def save_mockups(directory: Path, state: dict) -> list[Path]:  # noqa: C901 - co
     written.append(directory / "05-sistema.png")
     shell("Sistema", "Arranque automático, dependencias y diagnóstico.", system_body).save(written[-1])
 
-    about = about_card(880, app_name="Centro Turing", version=state.get("version", "3.2.0"),
+    about = about_card(880, app_name="Centro Turing", version=state.get("version", "3.2.1"),
                        topics=state.get("themes_count", 0),
                        repo_url=state.get("repo_url", ""),
                        upstream_url=state.get("upstream_url", ""))
