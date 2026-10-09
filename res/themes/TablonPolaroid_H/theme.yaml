@@ -132,7 +132,7 @@ STATS:
         HEIGHT: 42
         FONT: roboto/Roboto-Black.ttf
         FONT_SIZE: 34
-        FONT_COLOR: 255, 255, 255
+        FONT_COLOR: 40, 36, 60
         BACKGROUND_IMAGE: background.png
         ALIGN: center
         ANCHOR: mt
@@ -174,7 +174,7 @@ STATS:
         HEIGHT: 42
         FONT: roboto/Roboto-Black.ttf
         FONT_SIZE: 34
-        FONT_COLOR: 255, 255, 255
+        FONT_COLOR: 40, 36, 60
         BACKGROUND_IMAGE: background.png
         ALIGN: center
         ANCHOR: mt
@@ -213,7 +213,7 @@ STATS:
         HEIGHT: 15
         FONT: roboto/Roboto-Bold.ttf
         FONT_SIZE: 11
-        FONT_COLOR: 255, 255, 255
+        FONT_COLOR: 40, 36, 60
         BACKGROUND_IMAGE: background.png
         ALIGN: left
         ANCHOR: lt
@@ -229,7 +229,7 @@ STATS:
         HEIGHT: 42
         FONT: roboto/Roboto-Black.ttf
         FONT_SIZE: 34
-        FONT_COLOR: 255, 255, 255
+        FONT_COLOR: 40, 36, 60
         BACKGROUND_IMAGE: background.png
         ALIGN: center
         ANCHOR: mt
@@ -269,7 +269,7 @@ STATS:
         HEIGHT: 42
         FONT: roboto/Roboto-Black.ttf
         FONT_SIZE: 34
-        FONT_COLOR: 255, 255, 255
+        FONT_COLOR: 40, 36, 60
         BACKGROUND_IMAGE: background.png
         ALIGN: center
         ANCHOR: mt

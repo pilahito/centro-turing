@@ -1,5 +1,39 @@
 # Cambios
 
+## 3.3.1 — 2026-10-09
+
+Sensores corregidos (comprobado contra psutil y nvidia-smi en un equipo real):
+
+- El disco muestra la unidad del sistema (C:) y no la unidad desde la que se
+  ejecuta el programa.
+- La RAM usada y los datos de red se calculan en GiB reales; antes salían
+  un 7 % más bajos.
+- Más contraste en `TablonPolaroid_H` y `HudPlataformas_H`.
+
+Generador de temas con IA: el modo nuevo **taller** (`tools/taller_ia.py`) hace
+los temas de 3,5" horizontal igual que los de 3.2.1–3.3.0:
+
+- La IA elige un arquetipo de disposición que no se haya usado y un estilo, y
+  describe un fondo dibujado con primitivas (degradados, astros, montañas,
+  rejillas, paneles, biseles…), las etiquetas en español y la caja exacta de
+  cada widget (hora según `CLOCK_FORMAT`, tiempo con sensación y humedad, CPU,
+  GPU con VRAM, RAM, disco y red).
+- Las herramientas del taller dibujan el fondo, escriben `theme.yaml` y pintan
+  la vista previa con los valores más largos (`12:59 p. m.`,
+  `Parcialmente nublado`, `131072 M`, `1023.9 MB/s`, `100°C`…).
+- Revisión automática: texto que no cabe en su caja (igual que `library/lcd`),
+  solapes, etiquetas pegadas a un valor, contraste bajo, fondo cargado bajo un
+  texto, radiales fuera de pantalla y disposición repetida. Los fallos se le
+  devuelven a la IA y se reintenta (hasta 4 veces); si no sale, se usa el
+  generador anterior.
+- Se elige un modelo local instruct/coder y se descartan los modelos que Jan
+  reenvía a servicios externos. Aviso en el registro si se usa DeepSeek (de pago).
+- `CENTRO_TURING_IA_TALLER=0` desactiva el taller; `CENTRO_TURING_IA_ESPERA`
+  cambia el tiempo máximo por respuesta.
+- `python3 tools/taller_ia.py --revisar diseno.json vista.png` revisa un diseño a mano.
+- Más contraste en `TablonPolaroid_H` y `HudPlataformas_H`.
+
+
 ## 3.3.0 — 2026-10-09
 
 Veinte temas retro de 3,5" en horizontal (480×320), con estilos y
