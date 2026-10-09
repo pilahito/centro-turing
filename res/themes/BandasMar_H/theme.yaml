@@ -110,9 +110,9 @@ STATS:
     HUMIDITY:
       TEXT:
         SHOW: true
-        X: 372
+        X: 400
         Y: 70
-        WIDTH: 90
+        WIDTH: 60
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11
@@ -207,9 +207,9 @@ STATS:
     MEMORY_PERCENT:
       TEXT:
         SHOW: true
-        X: 300
+        X: 334
         Y: 160
-        WIDTH: 80
+        WIDTH: 60
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 12

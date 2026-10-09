@@ -110,9 +110,9 @@ STATS:
     HUMIDITY:
       TEXT:
         SHOW: true
-        X: 392
+        X: 422
         Y: 50
-        WIDTH: 76
+        WIDTH: 50
         HEIGHT: 14
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11
@@ -127,8 +127,8 @@ STATS:
       TEXT:
         SHOW: true
         X: 8
-        Y: 232
-        WIDTH: 70
+        Y: 224
+        WIDTH: 64
         HEIGHT: 18
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
         FONT_SIZE: 13
@@ -140,8 +140,8 @@ STATS:
       GRAPH:
         SHOW: true
         X: 8
-        Y: 252
-        WIDTH: 140
+        Y: 244
+        WIDTH: 156
         HEIGHT: 5
         MIN_VALUE: 0
         MAX_VALUE: 100
@@ -152,9 +152,9 @@ STATS:
       INTERVAL: 3
       TEXT:
         SHOW: true
-        X: 82
-        Y: 234
-        WIDTH: 64
+        X: 84
+        Y: 226
+        WIDTH: 70
         HEIGHT: 16
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
         FONT_SIZE: 11
@@ -169,7 +169,7 @@ STATS:
       TEXT:
         SHOW: true
         X: 308
-        Y: 220
+        Y: 210
         WIDTH: 70
         HEIGHT: 18
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
@@ -182,7 +182,7 @@ STATS:
       GRAPH:
         SHOW: true
         X: 308
-        Y: 256
+        Y: 246
         WIDTH: 164
         HEIGHT: 5
         MIN_VALUE: 0
@@ -194,7 +194,7 @@ STATS:
       TEXT:
         SHOW: true
         X: 382
-        Y: 222
+        Y: 212
         WIDTH: 70
         HEIGHT: 16
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
@@ -207,9 +207,9 @@ STATS:
     MEMORY_PERCENT:
       TEXT:
         SHOW: true
-        X: 308
-        Y: 240
-        WIDTH: 80
+        X: 340
+        Y: 228
+        WIDTH: 60
         HEIGHT: 14
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
         FONT_SIZE: 11
@@ -224,7 +224,7 @@ STATS:
       PERCENT_TEXT:
         SHOW: true
         X: 8
-        Y: 262
+        Y: 266
         WIDTH: 60
         HEIGHT: 16
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
@@ -236,8 +236,8 @@ STATS:
         SHOW_UNIT: true
       TEXT:
         SHOW: true
-        X: 72
-        Y: 262
+        X: 76
+        Y: 268
         WIDTH: 90
         HEIGHT: 16
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
@@ -250,8 +250,8 @@ STATS:
       GRAPH:
         SHOW: true
         X: 8
-        Y: 282
-        WIDTH: 150
+        Y: 288
+        WIDTH: 156
         HEIGHT: 5
         MIN_VALUE: 0
         MAX_VALUE: 100
@@ -264,7 +264,7 @@ STATS:
       PERCENT_TEXT:
         SHOW: true
         X: 308
-        Y: 266
+        Y: 264
         WIDTH: 64
         HEIGHT: 16
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
@@ -304,10 +304,10 @@ STATS:
       DOWNLOAD:
         TEXT:
           SHOW: true
-          X: 308
-          Y: 294
-          WIDTH: 164
-          HEIGHT: 14
+          X: 336
+          Y: 291
+          WIDTH: 136
+          HEIGHT: 13
           FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
           FONT_SIZE: 10
           FONT_COLOR: 0, 255, 220
@@ -318,10 +318,10 @@ STATS:
       UPLOAD:
         TEXT:
           SHOW: true
-          X: 308
-          Y: 308
-          WIDTH: 164
-          HEIGHT: 12
+          X: 336
+          Y: 305
+          WIDTH: 136
+          HEIGHT: 13
           FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
           FONT_SIZE: 10
           FONT_COLOR: 255, 60, 170

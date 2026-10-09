@@ -96,9 +96,9 @@ STATS:
     TEMPERATURE_FELT:
       TEXT:
         SHOW: true
-        X: 348
+        X: 346
         Y: 8
-        WIDTH: 60
+        WIDTH: 40
         HEIGHT: 14
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 10
@@ -193,8 +193,8 @@ STATS:
     TEMPERATURE:
       TEXT:
         SHOW: true
-        X: 166
-        Y: 108
+        X: 168
+        Y: 116
         WIDTH: 60
         HEIGHT: 16
         FONT: roboto-mono/RobotoMono-Bold.ttf
@@ -207,9 +207,9 @@ STATS:
     MEMORY_PERCENT:
       TEXT:
         SHOW: true
-        X: 230
-        Y: 110
-        WIDTH: 70
+        X: 240
+        Y: 116
+        WIDTH: 60
         HEIGHT: 16
         FONT: roboto-mono/RobotoMono-Bold.ttf
         FONT_SIZE: 11

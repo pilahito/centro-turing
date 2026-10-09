@@ -88,7 +88,7 @@ STATS:
         HEIGHT: 18
         FONT: roboto/Roboto-BoldItalic.ttf
         FONT_SIZE: 13
-        FONT_COLOR: 110, 30, 80
+        FONT_COLOR: 255, 230, 240
         BACKGROUND_IMAGE: background.png
         ALIGN: left
         ANCHOR: lt
@@ -102,7 +102,7 @@ STATS:
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 12
-        FONT_COLOR: 90, 30, 70
+        FONT_COLOR: 255, 220, 235
         BACKGROUND_IMAGE: background.png
         ALIGN: left
         ANCHOR: lt
@@ -110,13 +110,13 @@ STATS:
     HUMIDITY:
       TEXT:
         SHOW: true
-        X: 116
+        X: 144
         Y: 36
-        WIDTH: 70
+        WIDTH: 50
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 12
-        FONT_COLOR: 90, 30, 70
+        FONT_COLOR: 255, 220, 235
         BACKGROUND_IMAGE: background.png
         ALIGN: left
         ANCHOR: lt
@@ -185,7 +185,7 @@ STATS:
     MEMORY_PERCENT:
       TEXT:
         SHOW: true
-        X: 274
+        X: 272
         Y: 236
         WIDTH: 64
         HEIGHT: 16

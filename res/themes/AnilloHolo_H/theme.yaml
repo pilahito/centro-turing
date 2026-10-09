@@ -110,9 +110,9 @@ STATS:
     HUMIDITY:
       TEXT:
         SHOW: true
-        X: 316
+        X: 346
         Y: 88
-        WIDTH: 70
+        WIDTH: 50
         HEIGHT: 14
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11
@@ -150,12 +150,12 @@ STATS:
       INTERVAL: 3
       TEXT:
         SHOW: true
-        X: 220
-        Y: 112
-        WIDTH: 100
-        HEIGHT: 16
-        FONT: roboto/Roboto-Medium.ttf
-        FONT_SIZE: 12
+        X: 52
+        Y: 8
+        WIDTH: 90
+        HEIGHT: 22
+        FONT: geforce/GeForce-Bold.ttf
+        FONT_SIZE: 14
         FONT_COLOR: 0, 255, 210
         BACKGROUND_IMAGE: background.png
         ALIGN: left
@@ -205,9 +205,9 @@ STATS:
     MEMORY_PERCENT:
       TEXT:
         SHOW: true
-        X: 220
+        X: 252
         Y: 160
-        WIDTH: 80
+        WIDTH: 60
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11

@@ -110,9 +110,9 @@ STATS:
     HUMIDITY:
       TEXT:
         SHOW: true
-        X: 104
+        X: 134
         Y: 134
-        WIDTH: 70
+        WIDTH: 60
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11
@@ -150,9 +150,9 @@ STATS:
       INTERVAL: 3
       TEXT:
         SHOW: true
-        X: 214
-        Y: 156
-        WIDTH: 72
+        X: 296
+        Y: 136
+        WIDTH: 50
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11
@@ -189,9 +189,9 @@ STATS:
     TEMPERATURE:
       TEXT:
         SHOW: true
-        X: 356
-        Y: 156
-        WIDTH: 80
+        X: 438
+        Y: 136
+        WIDTH: 40
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11

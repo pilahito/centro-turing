@@ -82,13 +82,13 @@ STATS:
     WEATHER_DESCRIPTION:
       TEXT:
         SHOW: true
-        X: 156
-        Y: 14
-        WIDTH: 180
+        X: 150
+        Y: 6
+        WIDTH: 196
         HEIGHT: 18
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 13
-        FONT_COLOR: 255, 230, 236
+        FONT_COLOR: 255, 240, 244
         BACKGROUND_IMAGE: background.png
         ALIGN: left
         ANCHOR: lt
@@ -96,13 +96,13 @@ STATS:
     TEMPERATURE_FELT:
       TEXT:
         SHOW: true
-        X: 352
-        Y: 6
-        WIDTH: 116
+        X: 150
+        Y: 26
+        WIDTH: 90
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 12
-        FONT_COLOR: 255, 200, 214
+        FONT_COLOR: 255, 210, 222
         BACKGROUND_IMAGE: background.png
         ALIGN: left
         ANCHOR: lt
@@ -110,13 +110,13 @@ STATS:
     HUMIDITY:
       TEXT:
         SHOW: true
-        X: 352
-        Y: 24
-        WIDTH: 80
+        X: 282
+        Y: 26
+        WIDTH: 60
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 12
-        FONT_COLOR: 255, 200, 214
+        FONT_COLOR: 255, 210, 222
         BACKGROUND_IMAGE: background.png
         ALIGN: left
         ANCHOR: lt
@@ -207,9 +207,9 @@ STATS:
     MEMORY_PERCENT:
       TEXT:
         SHOW: true
-        X: 86
+        X: 118
         Y: 256
-        WIDTH: 68
+        WIDTH: 36
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11
@@ -304,9 +304,9 @@ STATS:
       DOWNLOAD:
         TEXT:
           SHOW: true
-          X: 368
+          X: 396
           Y: 218
-          WIDTH: 104
+          WIDTH: 78
           HEIGHT: 16
           FONT: roboto/Roboto-Medium.ttf
           FONT_SIZE: 11
@@ -318,9 +318,9 @@ STATS:
       UPLOAD:
         TEXT:
           SHOW: true
-          X: 368
-          Y: 258
-          WIDTH: 104
+          X: 396
+          Y: 240
+          WIDTH: 78
           HEIGHT: 16
           FONT: roboto/Roboto-Medium.ttf
           FONT_SIZE: 11

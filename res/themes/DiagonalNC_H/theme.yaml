@@ -84,7 +84,7 @@ STATS:
         SHOW: true
         X: 124
         Y: 70
-        WIDTH: 140
+        WIDTH: 116
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11
@@ -110,9 +110,9 @@ STATS:
     HUMIDITY:
       TEXT:
         SHOW: true
-        X: 104
+        X: 132
         Y: 96
-        WIDTH: 70
+        WIDTH: 50
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11
@@ -126,9 +126,9 @@ STATS:
       INTERVAL: 2
       TEXT:
         SHOW: true
-        X: 214
-        Y: 166
-        WIDTH: 90
+        X: 248
+        Y: 154
+        WIDTH: 80
         HEIGHT: 24
         FONT: geforce/GeForce-Bold.ttf
         FONT_SIZE: 16
@@ -140,7 +140,7 @@ STATS:
       GRAPH:
         SHOW: true
         X: 214
-        Y: 192
+        Y: 184
         WIDTH: 250
         HEIGHT: 6
         MIN_VALUE: 0
@@ -152,8 +152,8 @@ STATS:
       INTERVAL: 3
       TEXT:
         SHOW: true
-        X: 312
-        Y: 170
+        X: 334
+        Y: 160
         WIDTH: 80
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
@@ -168,9 +168,9 @@ STATS:
     PERCENTAGE:
       TEXT:
         SHOW: true
-        X: 214
-        Y: 206
-        WIDTH: 70
+        X: 248
+        Y: 196
+        WIDTH: 60
         HEIGHT: 22
         FONT: geforce/GeForce-Bold.ttf
         FONT_SIZE: 15
@@ -182,9 +182,9 @@ STATS:
       GRAPH:
         SHOW: true
         X: 214
-        Y: 230
+        Y: 222
         WIDTH: 250
-        HEIGHT: 7
+        HEIGHT: 6
         MIN_VALUE: 0
         MAX_VALUE: 100
         BAR_COLOR: 255, 60, 140
@@ -193,9 +193,9 @@ STATS:
     TEMPERATURE:
       TEXT:
         SHOW: true
-        X: 290
-        Y: 208
-        WIDTH: 64
+        X: 312
+        Y: 200
+        WIDTH: 56
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 12
@@ -207,9 +207,9 @@ STATS:
     MEMORY_PERCENT:
       TEXT:
         SHOW: true
-        X: 360
-        Y: 208
-        WIDTH: 100
+        X: 410
+        Y: 200
+        WIDTH: 56
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11
@@ -223,8 +223,8 @@ STATS:
     VIRTUAL:
       PERCENT_TEXT:
         SHOW: true
-        X: 214
-        Y: 252
+        X: 248
+        Y: 234
         WIDTH: 70
         HEIGHT: 20
         FONT: geforce/GeForce-Bold.ttf
@@ -237,7 +237,7 @@ STATS:
       TEXT:
         SHOW: true
         X: 214
-        Y: 274
+        Y: 258
         WIDTH: 110
         HEIGHT: 14
         FONT: roboto/Roboto-Medium.ttf
@@ -250,8 +250,8 @@ STATS:
       GRAPH:
         SHOW: true
         X: 214
-        Y: 290
-        WIDTH: 100
+        Y: 276
+        WIDTH: 110
         HEIGHT: 6
         MIN_VALUE: 0
         MAX_VALUE: 100
@@ -263,8 +263,8 @@ STATS:
     USED:
       PERCENT_TEXT:
         SHOW: true
-        X: 340
-        Y: 252
+        X: 384
+        Y: 234
         WIDTH: 80
         HEIGHT: 20
         FONT: geforce/GeForce-Bold.ttf
@@ -277,7 +277,7 @@ STATS:
       TEXT:
         SHOW: true
         X: 340
-        Y: 274
+        Y: 258
         WIDTH: 124
         HEIGHT: 14
         FONT: roboto/Roboto-Medium.ttf
@@ -290,7 +290,7 @@ STATS:
       GRAPH:
         SHOW: true
         X: 340
-        Y: 290
+        Y: 276
         WIDTH: 124
         HEIGHT: 6
         MIN_VALUE: 0
@@ -304,9 +304,9 @@ STATS:
       DOWNLOAD:
         TEXT:
           SHOW: true
-          X: 214
-          Y: 302
-          WIDTH: 120
+          X: 240
+          Y: 290
+          WIDTH: 96
           HEIGHT: 14
           FONT: roboto/Roboto-Medium.ttf
           FONT_SIZE: 11
@@ -318,9 +318,9 @@ STATS:
       UPLOAD:
         TEXT:
           SHOW: true
-          X: 344
-          Y: 302
-          WIDTH: 124
+          X: 370
+          Y: 290
+          WIDTH: 96
           HEIGHT: 14
           FONT: roboto/Roboto-Medium.ttf
           FONT_SIZE: 11

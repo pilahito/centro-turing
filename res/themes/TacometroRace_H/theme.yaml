@@ -37,9 +37,9 @@ STATS:
       TEXT:
         FORMAT: EEEE
         SHOW: true
-        X: 224
-        Y: 40
-        WIDTH: 110
+        X: 372
+        Y: 6
+        WIDTH: 100
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 12
@@ -52,9 +52,9 @@ STATS:
       TEXT:
         FORMAT: d MMM y
         SHOW: true
-        X: 340
-        Y: 40
-        WIDTH: 132
+        X: 372
+        Y: 24
+        WIDTH: 100
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 12
@@ -70,7 +70,7 @@ STATS:
         SHOW: true
         X: 250
         Y: 6
-        WIDTH: 120
+        WIDTH: 110
         HEIGHT: 28
         FONT: digital/DIGITAL-7.TTF
         FONT_SIZE: 22
@@ -83,8 +83,8 @@ STATS:
       TEXT:
         SHOW: true
         X: 8
-        Y: 40
-        WIDTH: 210
+        Y: 42
+        WIDTH: 200
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 12
@@ -96,9 +96,9 @@ STATS:
     TEMPERATURE_FELT:
       TEXT:
         SHOW: true
-        X: 8
-        Y: 60
-        WIDTH: 90
+        X: 214
+        Y: 42
+        WIDTH: 70
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11
@@ -110,9 +110,9 @@ STATS:
     HUMIDITY:
       TEXT:
         SHOW: true
-        X: 104
-        Y: 60
-        WIDTH: 70
+        X: 318
+        Y: 42
+        WIDTH: 50
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11
@@ -150,12 +150,12 @@ STATS:
       INTERVAL: 3
       TEXT:
         SHOW: true
-        X: 184
-        Y: 60
+        X: 40
+        Y: 66
         WIDTH: 80
-        HEIGHT: 20
+        HEIGHT: 24
         FONT: digital/DIGITAL-7.TTF
-        FONT_SIZE: 16
+        FONT_SIZE: 18
         FONT_COLOR: 255, 80, 80
         BACKGROUND_IMAGE: background.png
         ALIGN: left
@@ -166,9 +166,9 @@ STATS:
     PERCENTAGE:
       TEXT:
         SHOW: true
-        X: 276
-        Y: 58
-        WIDTH: 90
+        X: 172
+        Y: 66
+        WIDTH: 70
         HEIGHT: 24
         FONT: digital/DIGITAL-7.TTF
         FONT_SIZE: 18
@@ -180,7 +180,7 @@ STATS:
       GRAPH:
         SHOW: true
         X: 356
-        Y: 210
+        Y: 208
         WIDTH: 116
         HEIGHT: 8
         MIN_VALUE: 0
@@ -191,9 +191,9 @@ STATS:
     TEMPERATURE:
       TEXT:
         SHOW: true
-        X: 376
-        Y: 62
-        WIDTH: 96
+        X: 250
+        Y: 70
+        WIDTH: 70
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 12
@@ -205,12 +205,12 @@ STATS:
     MEMORY_PERCENT:
       TEXT:
         SHOW: true
-        X: 8
-        Y: 124
-        WIDTH: 124
+        X: 364
+        Y: 70
+        WIDTH: 70
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
-        FONT_SIZE: 11
+        FONT_SIZE: 12
         FONT_COLOR: 0, 255, 170
         BACKGROUND_IMAGE: background.png
         ALIGN: left
@@ -221,8 +221,8 @@ STATS:
     VIRTUAL:
       PERCENT_TEXT:
         SHOW: true
-        X: 8
-        Y: 148
+        X: 10
+        Y: 136
         WIDTH: 124
         HEIGHT: 24
         FONT: digital/DIGITAL-7.TTF
@@ -234,8 +234,8 @@ STATS:
         SHOW_UNIT: true
       TEXT:
         SHOW: true
-        X: 8
-        Y: 176
+        X: 10
+        Y: 164
         WIDTH: 124
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
@@ -247,8 +247,8 @@ STATS:
         SHOW_UNIT: true
       GRAPH:
         SHOW: true
-        X: 8
-        Y: 196
+        X: 10
+        Y: 184
         WIDTH: 124
         HEIGHT: 8
         MIN_VALUE: 0
@@ -302,8 +302,8 @@ STATS:
       DOWNLOAD:
         TEXT:
           SHOW: true
-          X: 8
-          Y: 220
+          X: 10
+          Y: 216
           WIDTH: 128
           HEIGHT: 16
           FONT: roboto/Roboto-Medium.ttf
@@ -316,8 +316,8 @@ STATS:
       UPLOAD:
         TEXT:
           SHOW: true
-          X: 8
-          Y: 244
+          X: 10
+          Y: 250
           WIDTH: 128
           HEIGHT: 16
           FONT: roboto/Roboto-Medium.ttf

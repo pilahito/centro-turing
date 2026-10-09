@@ -110,9 +110,9 @@ STATS:
     HUMIDITY:
       TEXT:
         SHOW: true
-        X: 394
+        X: 424
         Y: 34
-        WIDTH: 76
+        WIDTH: 48
         HEIGHT: 16
         FONT: roboto/Roboto-Medium.ttf
         FONT_SIZE: 11
@@ -213,9 +213,9 @@ STATS:
     MEMORY_PERCENT:
       TEXT:
         SHOW: true
-        X: 320
+        X: 360
         Y: 218
-        WIDTH: 150
+        WIDTH: 110
         HEIGHT: 16
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
         FONT_SIZE: 12
@@ -229,9 +229,9 @@ STATS:
     VIRTUAL:
       PERCENT_TEXT:
         SHOW: true
-        X: 8
+        X: 40
         Y: 272
-        WIDTH: 64
+        WIDTH: 56
         HEIGHT: 18
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
         FONT_SIZE: 13
@@ -242,9 +242,9 @@ STATS:
         SHOW_UNIT: true
       TEXT:
         SHOW: true
-        X: 76
+        X: 100
         Y: 274
-        WIDTH: 100
+        WIDTH: 72
         HEIGHT: 16
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
         FONT_SIZE: 11
@@ -257,7 +257,7 @@ STATS:
         SHOW: true
         X: 8
         Y: 294
-        WIDTH: 150
+        WIDTH: 164
         HEIGHT: 8
         MIN_VALUE: 0
         MAX_VALUE: 100
@@ -269,9 +269,9 @@ STATS:
     USED:
       PERCENT_TEXT:
         SHOW: true
-        X: 176
+        X: 222
         Y: 272
-        WIDTH: 64
+        WIDTH: 52
         HEIGHT: 18
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
         FONT_SIZE: 13
@@ -282,9 +282,9 @@ STATS:
         SHOW_UNIT: true
       TEXT:
         SHOW: true
-        X: 244
+        X: 276
         Y: 274
-        WIDTH: 76
+        WIDTH: 54
         HEIGHT: 16
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
         FONT_SIZE: 11
@@ -295,9 +295,9 @@ STATS:
         SHOW_UNIT: true
       GRAPH:
         SHOW: true
-        X: 176
+        X: 180
         Y: 294
-        WIDTH: 130
+        WIDTH: 150
         HEIGHT: 8
         MIN_VALUE: 0
         MAX_VALUE: 100
@@ -310,9 +310,9 @@ STATS:
       DOWNLOAD:
         TEXT:
           SHOW: true
-          X: 328
+          X: 362
           Y: 272
-          WIDTH: 144
+          WIDTH: 110
           HEIGHT: 16
           FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
           FONT_SIZE: 11
@@ -324,9 +324,9 @@ STATS:
       UPLOAD:
         TEXT:
           SHOW: true
-          X: 328
+          X: 362
           Y: 294
-          WIDTH: 144
+          WIDTH: 110
           HEIGHT: 16
           FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
           FONT_SIZE: 11

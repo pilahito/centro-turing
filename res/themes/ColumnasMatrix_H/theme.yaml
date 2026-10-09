@@ -110,9 +110,9 @@ STATS:
     HUMIDITY:
       TEXT:
         SHOW: true
-        X: 8
+        X: 36
         Y: 164
-        WIDTH: 148
+        WIDTH: 120
         HEIGHT: 16
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
         FONT_SIZE: 11
@@ -185,9 +185,9 @@ STATS:
     MEMORY_PERCENT:
       TEXT:
         SHOW: true
-        X: 168
+        X: 204
         Y: 154
-        WIDTH: 140
+        WIDTH: 104
         HEIGHT: 16
         FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
         FONT_SIZE: 12
