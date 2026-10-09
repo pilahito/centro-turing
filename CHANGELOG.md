@@ -1,5 +1,26 @@
 # Cambios
 
+## 3.3.0 — 2026-10-09
+
+Veinte temas retro de 3,5" en horizontal (480×320), con estilos y
+disposiciones que no se habían usado: ventana de escritorio de los 90,
+pantalla de configuración azul, consola de bolsillo, marcador de plataformas,
+televisor con carta de ajuste, casete con vúmetro, vídeo doméstico con REC,
+atardecer synthwave, equipo hi-fi de madera con agujas, tubos nixie,
+calculadora LCD, teletexto, arranque BASIC de 8 bits, pantalla de pinball,
+gramola, periódico antiguo, menú de rol de 8 bits, reloj de paletas,
+osciloscopio y tablón de corcho con fotos. Español, reloj según
+`CLOCK_FORMAT`, tiempo Open-Meteo, CPU, GPU (uso, temperatura y VRAM), RAM,
+disco y red. Fondos dibujados desde cero, sin personajes ni logotipos con
+copyright. No cambia el tema activo de `config.yaml`.
+
+- Ordenadores: `Ventana95_H`, `PantallaBIOS_H`, `ArranqueBasic_H`, `Teletexto_H`.
+- Consolas y juegos: `BolsilloGB_H`, `HudPlataformas_H`, `PinballDMD_H`, `MenuRPG_H`.
+- Imagen y sonido: `CartaAjuste_H`, `CintaCasete_H`, `GrabandoVHS_H`, `HifiMadera_H`, `Jukebox_H`.
+- Aparatos: `TubosNixie_H`, `CalculadoraLCD_H`, `RelojFlip_H`, `Osciloscopio_H`.
+- Estética: `Synthwave80_H`, `PeriodicoAntiguo_H`, `TablonPolaroid_H`.
+
+
 ## 3.2.2 — 2026-10-08
 
 Veinte temas nuevos de 3,5" en horizontal (480×320), además de los de 3.2.1.
