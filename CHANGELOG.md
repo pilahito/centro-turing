@@ -2,6 +2,14 @@
 
 ## 3.3.1 — 2026-10-09
 
+Sensores corregidos (comprobado contra psutil y nvidia-smi en un equipo real):
+
+- El disco muestra la unidad del sistema (C:) y no la unidad desde la que se
+  ejecuta el programa.
+- La RAM usada y los datos de red se calculan en GiB reales; antes salían
+  un 7 % más bajos.
+- Más contraste en `TablonPolaroid_H` y `HudPlataformas_H`.
+
 Generador de temas con IA: el modo nuevo **taller** (`tools/taller_ia.py`) hace
 los temas de 3,5" horizontal igual que los de 3.2.1–3.3.0:
 
