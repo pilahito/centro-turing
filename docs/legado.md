@@ -16,7 +16,7 @@ queda también un punto de seguridad antes de esta limpieza:
 
 | Qué | Por qué |
 | --- | --- |
-| `tools/centro_turing.py` (v2.3, 701 líneas) | Sustituido por `tools/turing_center.py` (3.2.2), que ya cubre todo |
+| `tools/centro_turing.py` (v2.3, 701 líneas) | Sustituido por `tools/turing_center.py` (3.3.0), que ya cubre todo |
 | `tools/centro_pro/` + `centro_pro_main.py` ("Centro Turing Pro, Fase 1") | Prototipo abandonado; el panel actual hace lo mismo |
 | `tools/PantallaTuringUI.cs`, `LaunchTuring.cs`, `CentroTuringLauncher.cs` (+ `.bak-*`) | Lanzadores C# duplicaban el panel y abrían dos procesos (fallos de COM3) |
 | `tools/centro_ui.json`, `tools/pantalla-turing-ui.json` | Estado que guardaban esos lanzadores |
