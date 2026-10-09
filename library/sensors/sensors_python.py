@@ -1,3 +1,4 @@
+import os
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 # turing-smart-screen-python - a Python system monitor and library for USB-C displays like Turing Smart Screen or XuanFang
@@ -457,21 +458,21 @@ class Disk(sensors.Disk):
     @staticmethod
     def disk_usage_percent() -> float:
         try:
-            return psutil.disk_usage("/").percent
+            return psutil.disk_usage((os.environ.get("SystemDrive", "C:") + "\\" if os.name == "nt" else "/")).percent
         except:
             return math.nan
 
     @staticmethod
     def disk_used() -> int:  # In bytes
         try:
-            return psutil.disk_usage("/").used
+            return psutil.disk_usage((os.environ.get("SystemDrive", "C:") + "\\" if os.name == "nt" else "/")).used
         except:
             return -1
 
     @staticmethod
     def disk_free() -> int:  # In bytes
         try:
-            return psutil.disk_usage("/").free
+            return psutil.disk_usage((os.environ.get("SystemDrive", "C:") + "\\" if os.name == "nt" else "/")).free
         except:
             return -1
 

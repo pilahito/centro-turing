@@ -454,7 +454,7 @@ class Memory(sensors.Memory):
         for sensor in ram.Sensors:
             if sensor.SensorType == Hardware.SensorType.Data and str(sensor.Name).startswith(
                     "Memory Used") and sensor.Value is not None:
-                return int(sensor.Value * 1000000000.0)
+                return int(sensor.Value * 1073741824.0)  # LHM da GiB
 
         return 0
 
@@ -464,7 +464,7 @@ class Memory(sensors.Memory):
         for sensor in ram.Sensors:
             if sensor.SensorType == Hardware.SensorType.Data and str(sensor.Name).startswith(
                     "Memory Available") and sensor.Value is not None:
-                return int(sensor.Value * 1000000000.0)
+                return int(sensor.Value * 1073741824.0)  # LHM da GiB
 
         return 0
 
@@ -474,15 +474,15 @@ class Memory(sensors.Memory):
 class Disk(sensors.Disk):
     @staticmethod
     def disk_usage_percent() -> float:
-        return psutil.disk_usage("/").percent
+        return psutil.disk_usage((os.environ.get("SystemDrive", "C:") + "\\" if os.name == "nt" else "/")).percent
 
     @staticmethod
     def disk_used() -> int:  # In bytes
-        return psutil.disk_usage("/").used
+        return psutil.disk_usage((os.environ.get("SystemDrive", "C:") + "\\" if os.name == "nt" else "/")).used
 
     @staticmethod
     def disk_free() -> int:  # In bytes
-        return psutil.disk_usage("/").free
+        return psutil.disk_usage((os.environ.get("SystemDrive", "C:") + "\\" if os.name == "nt" else "/")).free
 
 
 class Net(sensors.Net):
@@ -511,10 +511,10 @@ class Net(sensors.Net):
             for sensor in net_if.Sensors:
                 if sensor.SensorType == Hardware.SensorType.Data and str(sensor.Name).startswith(
                         "Data Uploaded") and sensor.Value is not None:
-                    uploaded = int(sensor.Value * 1000000000.0)
+                    uploaded = int(sensor.Value * 1073741824.0)  # LHM da GiB
                 elif sensor.SensorType == Hardware.SensorType.Data and str(sensor.Name).startswith(
                         "Data Downloaded") and sensor.Value is not None:
-                    downloaded = int(sensor.Value * 1000000000.0)
+                    downloaded = int(sensor.Value * 1073741824.0)  # LHM da GiB
                 elif sensor.SensorType == Hardware.SensorType.Throughput and str(sensor.Name).startswith(
                         "Upload Speed") and sensor.Value is not None:
                     upload_rate = int(sensor.Value)
