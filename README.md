@@ -9,7 +9,7 @@ con nuestros temas, nuestros sensores y nuestros lanzadores. Créditos y licenci
 completa en [CREDITOS.md](CREDITOS.md); lo que se ha dejado fuera, en
 [docs/legado.md](docs/legado.md).
 
-Novedades de la versión 3.3.0 (9 de octubre de 2026): [CHANGELOG.md](CHANGELOG.md).
+Novedades de la versión 3.3.1 (9 de octubre de 2026): [CHANGELOG.md](CHANGELOG.md).
 
 ![Centro Turing](res/docs/centro-turing-banner.png)
 
@@ -66,8 +66,8 @@ sudo usermod -aG dialout "$USER"   # y vuelve a iniciar sesion
 Paquete `.deb`:
 
 ```bash
-python3 tools/build_deb.py --version 3.3.0
-sudo dpkg -i dist/centro-turing_3.3.0_all.deb
+python3 tools/build_deb.py --version 3.3.1
+sudo dpkg -i dist/centro-turing_3.3.1_all.deb
 ```
 
 ## El panel
