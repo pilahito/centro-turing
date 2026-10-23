@@ -1,5 +1,23 @@
 # Cambios
 
+## 3.3.2 — 2026-10-23
+
+Arreglado el fallo de la pantalla en negro que obligaba a desenchufarla y volver
+a enchufarla (visto en Windows):
+
+- La revisión A saluda (`HELLO`) y lee la respuesta para saber qué modelo es. Si
+  la pantalla está atascada no contesta, y el código seguía adelante como si
+  fuera una Turing 3,5": la imagen no volvía a aparecer. Ahora una respuesta
+  vacía se reconoce como pantalla atascada.
+- En ese caso `library/recuperar_usb.py` reinicia el aparato por software
+  (`pnputil /restart-device` sobre `VID_1A86&PID_5722`), que es el equivalente a
+  quitar y poner el cable, y se repite el saludo. Antes solo se reiniciaban los
+  dispositivos que ni siquiera enumeraban (`VID_0000`), nunca la pantalla real.
+- La recuperación necesita el lanzador de administrador; sin permisos se avisa
+  en el registro y se continúa como antes, sin cambiar el comportamiento.
+- La reconexión en caliente también repite el saludo, así que una pantalla que
+  se queda muda con el programa ya abierto se recupera igual.
+
 ## 3.3.1 — 2026-10-09
 
 Sensores corregidos (comprobado contra psutil y nvidia-smi en un equipo real):
