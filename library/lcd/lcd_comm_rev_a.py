@@ -100,13 +100,65 @@ class LcdCommRevA(LcdComm):
                     return  # Centro Turing: pantalla desconectada, al volver se redibuja todo
                 self.update_queue.put((self.WriteData, [byteBuffer]))
 
+    def _leer_saludo(self, hello: bytearray) -> bytes:
+        """Manda el HELLO y devuelve lo que conteste la pantalla (vacio si esta muda)."""
+        try:
+            self.WriteData(hello)
+            return self.serial_read(6)
+        except Exception as e:
+            logger.debug("El saludo a la pantalla ha fallado: %s", e)
+            return b""
+        finally:
+            try:
+                self.serial_flush_input()
+            except Exception:
+                pass
+
+    def _reiniciar_pantalla_si_muda(self) -> bool:
+        """Centro Turing: si la pantalla no contesta, se reinicia su USB (equivalente a
+        desenchufarla y volver a enchufarla) y se vuelve a abrir el puerto.
+
+        Es el fallo tipico en Windows: la pantalla se queda en negro y no admite imagen
+        nueva, pero el COM sigue existiendo. Antes habia que quitar el cable a mano.
+        """
+        try:
+            from library import recuperar_usb
+        except Exception:
+            return False
+        try:
+            reiniciados = recuperar_usb.reiniciar_pantalla()
+        except Exception as e:
+            logger.debug("No se ha podido reiniciar la pantalla por USB: %s", e)
+            return False
+
+        if not reiniciados:
+            logger.warning(
+                "La pantalla no contesta. Sin permisos de administrador no se puede reiniciar "
+                "su USB: desenchufala y vuelve a enchufarla, o usa el lanzador de administrador")
+            return False
+
+        logger.info("Pantalla reiniciada por USB; se vuelve a abrir el puerto")
+        time.sleep(3)  # dar tiempo a que vuelva a enumerarse
+        try:
+            self.closeSerial()
+        except Exception:
+            pass
+        self.openSerial()
+        return True
+
     def _hello(self):
         hello = bytearray([Command.HELLO, Command.HELLO, Command.HELLO, Command.HELLO, Command.HELLO, Command.HELLO])
 
         # This command reads LCD answer on serial link, so it bypasses the queue
-        self.WriteData(hello)
-        response = self.serial_read(6)
-        self.serial_flush_input()
+        response = self._leer_saludo(hello)
+
+        if len(response) != 6:
+            # Sin respuesta: la pantalla esta atascada (imagen negra que no cambia).
+            # Se hace el "desenchufar y enchufar" por software y se repite el saludo.
+            if self._reiniciar_pantalla_si_muda():
+                response = self._leer_saludo(hello)
+            if len(response) != 6:
+                logger.error("La pantalla no contesta al saludo: la imagen puede quedarse en negro")
 
         if response == SubRevision.USBMONITOR_3_5.value:
             self.sub_revision = SubRevision.USBMONITOR_3_5

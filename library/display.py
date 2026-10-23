@@ -139,6 +139,10 @@ class Display:
     def _al_reconectar(self):
         logger.info("Pantalla reconectada: se reinicializa y se redibuja el tema")
         try:
+            # Volver a saludar sirve ademas para detectar la pantalla atascada: si no
+            # contesta, lcd_comm_rev_a reinicia su USB (el "desenchufar y enchufar") y
+            # la deja lista antes de redibujar.
+            self.lcd.InitializeComm()
             self.turn_on()
             self.lcd.SetOrientation(_get_theme_orientation())
             self.display_static_images()

@@ -59,6 +59,44 @@ def reiniciar_usb_en_error() -> int:
     return n
 
 
+def _ids_de_la_pantalla() -> list:
+    """Identificadores PnP del aparato de la pantalla (VID_1A86&PID_5722)."""
+    ps = ("Get-PnpDevice -PresentOnly -ErrorAction SilentlyContinue | Where-Object { "
+          "$_.InstanceId -like '*VID_1A86&PID_5722*' } | "
+          "ForEach-Object { $_.InstanceId }")
+    try:
+        r = subprocess.run(["powershell", "-NoProfile", "-Command", ps], capture_output=True, text=True,
+                           timeout=30, creationflags=0x08000000)
+        return [x.strip() for x in r.stdout.splitlines() if x.strip()]
+    except Exception:
+        return []
+
+
+def reiniciar_pantalla() -> int:
+    """Reinicia el dispositivo de la pantalla. Es el equivalente por software a
+    desenchufarla y volver a enchufarla.
+
+    Se usa cuando la pantalla deja de contestar al saludo: la imagen se queda en negro
+    y no admite nada nuevo, pero el COM sigue existiendo, asi que ni la deteccion ni la
+    reconexion lo notaban y habia que quitar el cable a mano. Devuelve cuantos
+    dispositivos se reiniciaron (0 si no se pudo).
+    """
+    if os.name != "nt":
+        return 0
+    if not _es_admin():
+        return 0
+    n = 0
+    for ident in _ids_de_la_pantalla():
+        try:
+            r = subprocess.run(["pnputil", "/restart-device", ident], capture_output=True, text=True,
+                               timeout=60, creationflags=0x08000000, errors="replace")
+            logger.info("Reinicio de la pantalla %s -> %s", ident, " ".join(r.stdout.split())[:100])
+            n += 1
+        except Exception as e:
+            logger.debug("pnputil pantalla %s: %s", ident, e)
+    return n
+
+
 def reiniciar_espera() -> None:
     global _inicio
     _inicio = None
